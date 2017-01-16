@@ -51,48 +51,48 @@ class clsUI {
 		
 		echo "<span>Home</span>";
 		echo "<ul>";
-		echo "<li><a href='index2.php'>Übersicht</a></li>";
+		echo "<li><a href='index.php'>Übersicht</a></li>";
 		echo "</ul>";
 		
 		echo "<span>Newsletterbereich</span>";
 		echo "<ul>";
-		echo "<li><a href='index2.php?view=zone-list'>wählen</a></li>";
-		echo "<li><a href='index2.php?view=zone-edit'>bearbeiten</a></li>";
-		echo "<li><a href='index2.php?view=zone-create'>erstellen</a></li>";
-// 		echo "<li><a href='index2.php?view=zone-delete'>löschen</a></li>";
+		echo "<li><a href='index.php?view=zone-list'>wählen</a></li>";
+		echo "<li><a href='index.php?view=zone-edit'>bearbeiten</a></li>";
+		echo "<li><a href='index.php?view=zone-create'>erstellen</a></li>";
+// 		echo "<li><a href='index.php?view=zone-delete'>löschen</a></li>";
 		echo "</ul>";
 		
 		echo "<span>Newsletter</span>";
 		echo "<ul>";
-		echo "<li><a href='index2.php?view=nwl-create'>erstellen</a></li>";
-		echo "<li><a href='index2.php?view=nwl-edit'>bearbeiten</a></li>";
-		echo "<li><a href='index2.php?view=nwl-send'>senden</a></li>";
-		echo "<li><a href='index2.php?view=nwl-history'>gesendet</a></li>";
+		echo "<li><a href='index.php?view=nwl-create'>erstellen</a></li>";
+		echo "<li><a href='index.php?view=nwl-edit'>bearbeiten</a></li>";
+		echo "<li><a href='index.php?view=nwl-send'>senden</a></li>";
+		echo "<li><a href='index.php?view=nwl-history'>gesendet</a></li>";
 		echo "</ul>";
 		
 		echo "<span>Abonnenten</span>";
 		echo "<ul>";
-		echo "<li><a href='index2.php?view=sub-list'>anzeigen</a></li>";
-		echo "<li><a href='index2.php?view=sub-import'>importieren</a></li>";
-		echo "<li><a href='index2.php?view=sub-export'>exportieren</a></li>";
-		echo "<li><a href='index2.php?view=sub-remove'>deaktivieren</a></li>";
-		echo "<li><a href='index2.php?view=sub-delete'>löschen</a></li>";
+		echo "<li><a href='index.php?view=sub-list'>anzeigen</a></li>";
+		echo "<li><a href='index.php?view=sub-import'>importieren</a></li>";
+		echo "<li><a href='index.php?view=sub-export'>exportieren</a></li>";
+		echo "<li><a href='index.php?view=sub-remove'>deaktivieren</a></li>";
+		echo "<li><a href='index.php?view=sub-delete'>löschen</a></li>";
 		echo "</ul>";
 		
 		echo "<span>Statistik</span>";
 		echo "<ul>";
-		echo "<li><a href='index2.php?view=stats-all'>alle Bereiche</a></li>";
-		echo "<li><a href='index2.php?view=stats-cur'>aktueller Bereich</a></li>";
-// 		echo "<li><a href='index2.php?view=stats-page'>Seitenaufrufe</a></li>";
+		echo "<li><a href='index.php?view=stats-all'>alle Bereiche</a></li>";
+		echo "<li><a href='index.php?view=stats-cur'>aktueller Bereich</a></li>";
+// 		echo "<li><a href='index.php?view=stats-page'>Seitenaufrufe</a></li>";
 		echo "</ul>";
 		
 		echo "<span>Global</span>";
 		echo "<ul>";
-		echo "<li><a href='index2.php?view=config'>Einstellungen</a></li>";
-// 		echo "<li><a href='index2.php?view=blacklist'>Blacklist</a></li>";
-		echo "<li><a href='index2.php?view=password'>Passwort/Mail</a></li>";
-		echo "<li><a href='index2.php?view=logout'>Abmelden</a></li>";
-		echo "<li><a href='index2.php?view=debug'>Renew Session</a></li>";
+		echo "<li><a href='index.php?view=config'>Einstellungen</a></li>";
+// 		echo "<li><a href='index.php?view=blacklist'>Blacklist</a></li>";
+		echo "<li><a href='index.php?view=password'>Passwort/Mail</a></li>";
+		echo "<li><a href='index.php?view=logout'>Abmelden</a></li>";
+		echo "<li><a href='index.php?view=debug'>Renew Session</a></li>";
 		echo "</ul>";
 		
 		echo "</div>\n"; // .sidebar

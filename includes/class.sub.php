@@ -35,10 +35,10 @@ class clsSubscriber {
 		if ($this->db->num_rows > 0) {
 			echo "<table border='0' width='100%' cellpadding='2' cellspacing='0'>";
 			echo "<tr>";
-			echo "<th class='t-left'><a href='index2.php?view=sub-list&amp;sort=mail'>Email</a></th>";
+			echo "<th class='t-left'><a href='index.php?view=sub-list&amp;sort=mail'>Email</a></th>";
 			echo "<th class='t-left'>Option1</th>";
-			echo "<th class='t-left' width='135'><a href='index2.php?view=sub-list&amp;sort=date'>Anmeldung</a></th>";
-			echo "<th class='t-left' width='180'><a href='index2.php?view=sub-list&amp;sort=status'>Status</a></th>";
+			echo "<th class='t-left' width='135'><a href='index.php?view=sub-list&amp;sort=date'>Anmeldung</a></th>";
+			echo "<th class='t-left' width='180'><a href='index.php?view=sub-list&amp;sort=status'>Status</a></th>";
 			echo "<th class='t-center' width='50'>&nbsp;</th>";
 			echo "</tr>";
 			
@@ -51,9 +51,9 @@ class clsSubscriber {
 				echo "<td>",$this->status2text($sub['Status'], $sub['Abmeldezeit']),"</td>";
 				echo "<td class='t-center'>";
 				if (($sub['Status'] == ABO_VALIDATE) || ($sub['Status'] == ABO_INACTIVE))
-					echo " <a href='index2.php?view=sub-list&amp;set=",$sub['Email'],"&amp;status=",ABO_ACTIVE,"&amp;sort=",$sort,"' title='Anmelden'>&#10004;</a>";
+					echo " <a href='index.php?view=sub-list&amp;set=",$sub['Email'],"&amp;status=",ABO_ACTIVE,"&amp;sort=",$sort,"' title='Anmelden'>&#10004;</a>";
 				if (($sub['Status'] == ABO_VALIDATE) || ($sub['Status'] == ABO_ACTIVE))
-					echo " <a href='index2.php?view=sub-list&amp;set=",$sub['Email'],"&amp;status=",ABO_INACTIVE,"&amp;sort=",$sort,"' title='Abmelden'>&#10008;</a>";
+					echo " <a href='index.php?view=sub-list&amp;set=",$sub['Email'],"&amp;status=",ABO_INACTIVE,"&amp;sort=",$sort,"' title='Abmelden'>&#10008;</a>";
 				echo "</td>";
 				echo "</tr>";
 			}
@@ -150,7 +150,7 @@ class clsSubscriber {
 			}
 		}
 		else {
-			echo "<form action='index2.php?view=sub-import' method='POST' accept-charset='utf-8'>";
+			echo "<form action='index.php?view=sub-import' method='POST' accept-charset='utf-8'>";
 			
 			echo "<label for='emails' class='label'>Emails <em>(1 Adresse pro Zeile)</em>:</label>";
 			echo " <textarea name='emails' style='width: 98%; height: 350px;' required></textarea><br>";
@@ -206,7 +206,7 @@ class clsSubscriber {
 			echo "<br>";
 		}
 		
-		echo "<form action='index2.php?view=sub-export' method='POST' accept-charset='utf-8'>";
+		echo "<form action='index.php?view=sub-export' method='POST' accept-charset='utf-8'>";
 		
 		echo " <label for='emails' class='label'>Emails <em>(1 Adresse pro Zeile)</em>:</label>";
 		echo " <textarea name='emails' style='width: 98%; height: 350px;'>",$export,"</textarea><br>";
@@ -273,7 +273,7 @@ class clsSubscriber {
 			}
 		}
 		else {
-			echo "<form action='index2.php?view=sub-remove' method='POST' accept-charset='utf-8'>";
+			echo "<form action='index.php?view=sub-remove' method='POST' accept-charset='utf-8'>";
 			
 			echo "<label for='emails' class='label'>Emails <em>(1 Adresse pro Zeile)</em>:</label>";
 			echo " <textarea name='emails' style='width: 98%; height: 350px;' required></textarea><br>";
@@ -330,7 +330,7 @@ class clsSubscriber {
 			}
 		}
 		else {
-			echo "<form action='index2.php?view=sub-delete' method='POST' accept-charset='utf-8'>";
+			echo "<form action='index.php?view=sub-delete' method='POST' accept-charset='utf-8'>";
 			
 			echo "<label for='emails' class='label'>Emails <em>(1 Adresse pro Zeile)</em>:</label>";
 			echo " <textarea name='emails' style='width: 98%; height: 350px;' required></textarea><br>";

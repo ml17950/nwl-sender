@@ -28,7 +28,7 @@ class clsNewsletter {
 		$sql = "INSERT INTO `letterit_send` (`LS_ID`, `HTML`, `Text`, `Betreff`, `BID`) VALUES (NULL, '<p>!!option1!!<br>!!option2!!<br>!!option3!!<br>!!option4!!</p><p>!!unsubmittext!!</p>', '!!unsubmittext!!', 'Newsletter ".date('d.m.Y H:i:s')."', '".BID."');";
 		$this->db->query($sql);
 		$new_lsid = $this->db->last_insert_id;
-		redirect('index2.php?view=nwl-edit&lsid='.$new_lsid, 0);
+		redirect('index.php?view=nwl-edit&lsid='.$new_lsid, 0);
 	}
 	
 	function edit() {
@@ -93,12 +93,12 @@ class clsNewsletter {
 // 			$sql = "INSERT INTO `letterit_send` (`LS_ID`, `HTML`, `Text`, `Betreff`, `BID`) VALUES (NULL, '<p>!!unsubmittext!!</p>', '!!unsubmittext!!', 'Newsletter ".date('d.m.Y H:i:s')."', '".BID."');";
 // 			$this->db->query($sql);
 // 			$new_lsid = $this->db->last_insert_id;
-// 			redirect('index2.php?view=nwl-create', 0);
+// 			redirect('index.php?view=nwl-create', 0);
 		}
 		elseif ($this->db->num_rows > 1) {
 			echo "<h4>Folgende Newsletter sind bereits vorbereitet</h4>";
 			foreach ($nwls as $nwl) {
-				echo "<a href='index2.php?view=nwl-edit&lsid=",$nwl['LS_ID'],"'>#",$nwl['LS_ID']," &ndash; ",$nwl['Betreff'],"</a><br>";
+				echo "<a href='index.php?view=nwl-edit&lsid=",$nwl['LS_ID'],"'>#",$nwl['LS_ID']," &ndash; ",$nwl['Betreff'],"</a><br>";
 			}
 		}
 		else {
@@ -107,7 +107,7 @@ class clsNewsletter {
 			if (empty($preview))
 				$preview = $_SESSION['user']['Name'];
 			
-			echo "<form name='lfrm' action='index2.php?view=nwl-edit&ts=",time(),"' method='POST' accept-charset='utf-8'>";
+			echo "<form name='lfrm' action='index.php?view=nwl-edit&ts=",time(),"' method='POST' accept-charset='utf-8'>";
 			echo "<input type='hidden' name='lsid' value='",$nwl['LS_ID'],"'>";
 			
 			echo "<label for='subject'>Betreff</label> <input type='text' name='subject' value='",$nwl['Betreff'],"' style='width: 98%;' required><br>";
@@ -135,12 +135,12 @@ class clsNewsletter {
 			
 			echo "HTML Vorschau<br>";
 			echo "<div class='nwl-preview'>";
-			echo $this->mailer->mail->Body;
+			echo $this->mailer->preview_html;
 			echo "</div>";
 			
 			echo "Text Vorschau<br>";
 			echo "<div class='nwl-preview'>";
-			echo nl2br($this->mailer->mail->AltBody);
+			echo nl2br($this->mailer->preview_text);
 			echo "</div>";
 		}
 		
@@ -172,9 +172,9 @@ class clsNewsletter {
 // debugarr($nwl);
 				
 				if ($nwl['Status'] == NWL_CREATED)
-					echo "<a href='index2.php?view=nwl-send&lsid=",$nwl['LS_ID'],"'>#",$nwl['LS_ID']," &ndash; ",$nwl['Betreff']," starten</a><br>";
+					echo "<a href='index.php?view=nwl-send&lsid=",$nwl['LS_ID'],"'>#",$nwl['LS_ID']," &ndash; ",$nwl['Betreff']," starten</a><br>";
 				elseif ($nwl['Status'] == NWL_SENDING)
-					echo "<a href='index2.php?view=nwl-send&lsid=",$nwl['LS_ID'],"&send-now=yes&code=",$nwl['Code'],"'>#",$nwl['LS_ID']," &ndash; ",$nwl['Betreff']," weiter senden</a><br>";
+					echo "<a href='index.php?view=nwl-send&lsid=",$nwl['LS_ID'],"&send-now=yes&code=",$nwl['Code'],"'>#",$nwl['LS_ID']," &ndash; ",$nwl['Betreff']," weiter senden</a><br>";
 				else
 					echo "xxx";
 				
@@ -204,8 +204,8 @@ class clsNewsletter {
 					
 					$this->db->query($sql);
 					
-					redirect('index2.php?view=nwl-send&lsid='.$lsid.'&send-now=yes&code='.$newcode, intval($_SESSION['config']['bounce_weiter']));
-// 					echo "<a href='index2.php?view=nwl-send&lsid=",$lsid,"&send-now=yes&code=",$newcode,"'>weiter 1</a>";
+					redirect('index.php?view=nwl-send&lsid='.$lsid.'&send-now=yes&code='.$newcode, intval($_SESSION['config']['bounce_weiter']));
+// 					echo "<a href='index.php?view=nwl-send&lsid=",$lsid,"&send-now=yes&code=",$newcode,"'>weiter 1</a>";
 				}
 				elseif ($nwl['Status'] == NWL_SENDING) {
 					msg("Wenn sie diese Seite verlassen, wird das Senden unterbrochen!", "warning");
@@ -263,8 +263,8 @@ class clsNewsletter {
 							$sql .= " WHERE `LS_ID` = ".$lsid.";";
 // debugsql($sql);
 							
-							redirect('index2.php?view=nwl-send&lsid='.$lsid.'&send-now=yes&code='.$newcode, intval($_SESSION['config']['bounce_weiter']));
-// 							echo "<br><br><a href='index2.php?view=nwl-send&lsid=",$lsid,"&send-now=yes&code=",$newcode,"'>weiter 2</a>";
+							redirect('index.php?view=nwl-send&lsid='.$lsid.'&send-now=yes&code='.$newcode, intval($_SESSION['config']['bounce_weiter']));
+// 							echo "<br><br><a href='index.php?view=nwl-send&lsid=",$lsid,"&send-now=yes&code=",$newcode,"'>weiter 2</a>";
 						}
 						else {
 							$percent = 100;
@@ -283,8 +283,8 @@ class clsNewsletter {
 							$sql .= " `Abo_send_time` = '".time()."'";
 							$sql .= " WHERE `LS_ID` = ".$lsid.";";
 							
-							redirect('index2.php?view=nwl-send&lsid='.$lsid.'&send-now=yes&code='.$newcode, intval($_SESSION['config']['bounce_weiter']));
-// 							echo "<a href='index2.php?view=nwl-send&lsid=",$lsid,"&send-now=yes&code=",$newcode,"'>weiter 3</a>";
+							redirect('index.php?view=nwl-send&lsid='.$lsid.'&send-now=yes&code='.$newcode, intval($_SESSION['config']['bounce_weiter']));
+// 							echo "<a href='index.php?view=nwl-send&lsid=",$lsid,"&send-now=yes&code=",$newcode,"'>weiter 3</a>";
 						}
 						
 						$this->db->query($sql);
@@ -304,7 +304,7 @@ class clsNewsletter {
 					$sql = "SELECT COUNT(`Email`) AS `cnt` FROM `letterit_abonnenten` WHERE `BID` = ".BID." AND `Status` = ".ABO_ACTIVE.";";
 					$abo = $this->db->query_assoc($sql);
 					
-					echo "<form name='lfrm' action='index2.php?view=nwl-send' method='POST' accept-charset='utf-8'>";
+					echo "<form name='lfrm' action='index.php?view=nwl-send' method='POST' accept-charset='utf-8'>";
 					echo "Newsletter #",$nwl['LS_ID']," - <strong>",$nwl['Betreff'],"</strong> - an ",$abo['cnt']," Abonnenten senden?";
 					echo "<br><br>";
 					if (($nwl['Start'] > 0) && (!empty($nwl['Code']))) {
@@ -336,12 +336,12 @@ class clsNewsletter {
 					
 					echo "HTML Vorschau<br>";
 					echo "<div class='nwl-preview'>";
-					echo $this->mailer->mail->Body;
+					echo $this->mailer->preview_html;
 					echo "</div>";
 					
 					echo "Text Vorschau<br>";
 					echo "<div class='nwl-preview'>";
-					echo nl2br($this->mailer->mail->AltBody);
+					echo nl2br($this->mailer->preview_text);
 					echo "</div>";
 				}
 				else
@@ -376,13 +376,13 @@ class clsNewsletter {
 			foreach ($nwls as $nwl) {
 // debugarr($nwl);
 				if ($nwl['Abo_send_time'] == 0) {
-					$nwl_link = 'index2.php?view=nwl-edit&amp;lsid='.$nwl['LS_ID'];
+					$nwl_link = 'index.php?view=nwl-edit&amp;lsid='.$nwl['LS_ID'];
 					$send_time = '-';
 					$duration = '-';
 					$average = '-';
 				}
 				else {
-					$nwl_link = 'index2.php?view=nwl-preview&amp;id='.$nwl['LS_ID'];
+					$nwl_link = 'index.php?view=nwl-preview&amp;id='.$nwl['LS_ID'];
 					$send_time = date('D, d.m.Y H:i', $nwl['Abo_send_time']);
 					$dtmp = $nwl['Abo_send_time'] - $nwl['Start_time'];
 					
@@ -426,9 +426,9 @@ class clsNewsletter {
 				echo "<td class='t-right'>",$duration,"</td>";
 				echo "<td class='t-right'>",$average,"</td>";
 				echo "<td class='t-center'>";
-				echo " <a href='index2.php?view=nwl-delete&amp;id=",$nwl['LS_ID'],"' title='löschen'>&#10008;</a>";
-				echo " <a href='index2.php?view=nwl-copy&amp;id=",$nwl['LS_ID'],"' title='neu senden'>&#10140;</a>";
-				echo " <a href='index2.php?view=nwl-reset&amp;id=",$nwl['LS_ID'],"' title='zurücksetzen'>&#10026;</a>";
+				echo " <a href='index.php?view=nwl-delete&amp;id=",$nwl['LS_ID'],"' title='löschen'>&#10008;</a>";
+				echo " <a href='index.php?view=nwl-copy&amp;id=",$nwl['LS_ID'],"' title='neu senden'>&#10140;</a>";
+				echo " <a href='index.php?view=nwl-reset&amp;id=",$nwl['LS_ID'],"' title='zurücksetzen'>&#10026;</a>";
 				echo "</td>";
 				echo "</tr>";
 			}
@@ -455,14 +455,12 @@ class clsNewsletter {
 		else
 			msg("Newsletter nicht gefunden", "error");
 		
-		redirect('index2.php?view=nwl-history', 2);
+		redirect('index.php?view=nwl-history', 2);
 	}
 	
 	function preview($id) {
 		$sql = "SELECT * FROM `letterit_send` WHERE `BID` = ".BID." AND `LS_ID` = ".$id;
 		$nwl = $this->db->query_assoc($sql);
-// debugsql($sql);
-// debugarr($nwl);
 		
 		echo "<h1>",$nwl['Betreff'],"</h1>";
 		
@@ -470,12 +468,12 @@ class clsNewsletter {
 		
 		echo "HTML Vorschau<br>";
 		echo "<div class='nwl-preview'>";
-		echo $this->mailer->mail->Body;
+		echo $this->mailer->preview_html;
 		echo "</div>";
 		
 		echo "Text Vorschau<br>";
 		echo "<div class='nwl-preview'>";
-		echo nl2br($this->mailer->mail->AltBody);
+		echo nl2br($this->mailer->preview_text);
 		echo "</div>";
 	}
 	
@@ -489,16 +487,16 @@ class clsNewsletter {
 				$this->db->query($sql);
 				$new_lsid = $this->db->last_insert_id;
 				msg("Newsletter kopiert", "success");
-				redirect('index2.php?view=nwl-create&lsid='.$new_lsid, 2);
+				redirect('index.php?view=nwl-create&lsid='.$new_lsid, 2);
 			}
 			else {
 				msg("Newsletter nicht gefunden", "error");
-				redirect('index2.php?view=nwl-history', 2);
+				redirect('index.php?view=nwl-history', 2);
 			}
 		}
 		else {
 			msg("Newsletter nicht gefunden", "error");
-			redirect('index2.php?view=nwl-history', 2);
+			redirect('index.php?view=nwl-history', 2);
 		}
 	}
 	

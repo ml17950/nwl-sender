@@ -17,16 +17,16 @@ class clsZone {
 			if ($this->db->num_rows == 1) {
 				$_SESSION['current-zone'] = $id;
 				msg("Bereich ausgewählt", "success");
-				redirect('index2.php', 1);
+				redirect('index.php', 1);
 			}
 			else {
 				msg("Bereich nicht gefunden", "error");
-				redirect('index2.php?view=zone-list', 2);
+				redirect('index.php?view=zone-list', 2);
 			}
 		}
 		else {
 			msg("Bereich nicht gefunden", "error");
-			redirect('index2.php?view=zone-list', 2);
+			redirect('index.php?view=zone-list', 2);
 		}
 	}
 	
@@ -54,11 +54,11 @@ class clsZone {
 			
 			foreach ($zones as $zone) {
 				echo "<tr>";
-				echo "<td><a href='index2.php?view=zone-select&amp;id=",$zone['BID'],"' title='wählen'>",$zone['Bereich_Name'],"</a></td>";
+				echo "<td><a href='index.php?view=zone-select&amp;id=",$zone['BID'],"' title='wählen'>",$zone['Bereich_Name'],"</a></td>";
 				echo "<td>",$zone['Absender_Name']," &lt;",$zone['Absender_Email'],"&gt;</td>";
 				echo "<td class='t-center'>",intval($nwls[$zone['BID']]['cnt']),"</td>";
 				echo "<td class='t-center'>",intval($subs[$zone['BID']]['cnt']),"</td>";
-				echo "<td class='t-center'><a href='index2.php?view=zone-delete&amp;id=",$zone['BID'],"' title='löschen'>&#10008;</a></td>";
+				echo "<td class='t-center'><a href='index.php?view=zone-delete&amp;id=",$zone['BID'],"' title='löschen'>&#10008;</a></td>";
 				echo "</tr>";
 			}
 			
@@ -103,7 +103,7 @@ class clsZone {
 		$sql = "SELECT * FROM `letterit_bereiche` WHERE `BID` = ".BID." LIMIT 1;";
 		$znfo = $this->db->query_assoc($sql);
 		
-		echo "<form name='lfrm' action='index2.php?view=zone-edit' method='POST' accept-charset='utf-8'>";
+		echo "<form name='lfrm' action='index.php?view=zone-edit' method='POST' accept-charset='utf-8'>";
 		
 		echo "<fieldset><legend>Allgemeines</legend>";
 		echo "<label for='Bereich_Name'>Bereichs Name</label> <input type='text' name='Bereich_Name' value='",$znfo['Bereich_Name'],"' style='width: 98%;' required><br>";
@@ -133,12 +133,12 @@ class clsZone {
 		
 		echo "HTML Vorschau<br>";
 		echo "<div class='nwl-preview'>";
-		echo stripslashes($this->mailer->mail->Body);
+		echo $this->mailer->preview_html;
 		echo "</div>";
 		
 		echo "Text Vorschau<br>";
 		echo "<div class='nwl-preview'>";
-		echo nl2br(stripslashes($this->mailer->mail->AltBody));
+		echo nl2br($this->mailer->preview_text);
 		echo "</div>";
 		echo "</fieldset>";
 		
@@ -155,12 +155,12 @@ class clsZone {
 		
 		echo "HTML Vorschau<br>";
 		echo "<div class='nwl-preview'>";
-		echo stripslashes($this->mailer->mail->Body);
+		echo $this->mailer->preview_html;
 		echo "</div>";
 		
 		echo "Text Vorschau<br>";
-		echo "<div class='nwl-preview'>";
-		echo nl2br(stripslashes($this->mailer->mail->AltBody));
+		echo "<div class='nwl-preview'>asd";
+		echo nl2br($this->mailer->preview_text);
 		echo "</div>";
 		echo "</fieldset>";
 		
@@ -255,10 +255,10 @@ class clsZone {
 			}
 			
 			$_SESSION['current-zone'] = 1;
-			redirect('index2.php?view=zone-list', 3);
+			redirect('index.php?view=zone-list', 3);
 		}
 		else {
-			echo "<form name='lfrm' action='index2.php?view=zone-delete&id=",$id,"' method='POST' accept-charset='utf-8'>";
+			echo "<form name='lfrm' action='index.php?view=zone-delete&id=",$id,"' method='POST' accept-charset='utf-8'>";
 			echo "Gewählter Bereich - <strong>",zname($id),"</strong>";
 			echo "<br><br>";
 			echo " <input type='checkbox' name='del-now' value='yes'>";

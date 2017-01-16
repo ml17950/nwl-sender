@@ -26,7 +26,7 @@ class clsUser {
 	
 	function login_form() {
 		echo "<div id='lbox'>";
-		echo "	<form name='lfrm' action='index2.php?view=login' method='POST' accept-charset='utf-8'>";
+		echo "	<form name='lfrm' action='index.php?view=login' method='POST' accept-charset='utf-8'>";
 			
 		echo "	<div id='lbox_head'>";
 		echo "		NWL Login";
@@ -68,7 +68,7 @@ class clsUser {
 		unset($_SESSION['zones']);
 // 		unset($_SESSION['user']);
 		
-		msg("Abmeldung erfolgreich - <a href='index2.php'>erneut Anmelden</a>", "success");
+		msg("Abmeldung erfolgreich - <a href='index.php'>erneut Anmelden</a>", "success");
 	}
 	
 	function renew_session() {
@@ -98,7 +98,7 @@ class clsUser {
 					msg("Passwort erfolgreich geändert", "success");
 					
 					$this->logout();
-					redirect('index2.php', 3);
+					redirect('index.php', 3);
 					exit;
 				}
 			}
@@ -106,7 +106,7 @@ class clsUser {
 				msg("Passwörter stimmen nicht überein", "error");
 		}
 		
-		echo "<form action='index2.php?view=password' method='POST' accept-charset='utf-8'>";
+		echo "<form action='index.php?view=password' method='POST' accept-charset='utf-8'>";
 		
 		echo "<label for='pwd1' class='label'>Passwort:</label>";
 		echo "<input type='password' name='pwd1' value='' required>";

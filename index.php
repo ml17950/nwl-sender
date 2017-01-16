@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	date_default_timezone_set('Europe/Berlin');
+	date_default_timezone_set(MY_TIMEZONE);
 	
 	if (file_exists('config/config.php'))
 		include_once('config/config.php');

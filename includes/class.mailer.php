@@ -3,6 +3,8 @@ class clsMailer {
 	var $db;
 	var $mail;
 	var $errormsg;
+	var $preview_text;
+	var $preview_html;
 	
 	function __construct(&$db) {
 // 		echo "<!--",__CLASS__,":",__FUNCTION__,"-->\n";
@@ -86,6 +88,9 @@ class clsMailer {
 		
 		$this->mail->AltBody	= stripslashes($replaced_text);
 		$this->mail->Body		= $pre_body.stripslashes($replaced_html).$post_body;
+		
+		$this->preview_text		= stripslashes($replaced_text);
+		$this->preview_html		= stripslashes($replaced_html);
 	}
 	
 	function send_single_mail($to_mail, $preview = false) {
