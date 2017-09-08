@@ -22,7 +22,9 @@
 	http://qvectors.net/downloads/images/vector/abstract/82-Abstract-Design-Green-Background-Vector-Graphic.png
 	http://img1.123freevectors.com/wp-content/uploads/new/Backgrounds/669-free-abstract-green-straight-lines-background-vector-art.png
 	
-	16.11.18
+	16.11.18: Initial commit
+	17.01.16: Update to release
 	17.07.07: Bugfixes
+	17.09.08: Bugfixes
 */
 ?>
