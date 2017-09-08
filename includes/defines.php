@@ -1,5 +1,5 @@
 <?php
-	define('VERSION', '17.01.16');
+	define('VERSION', '17.09.08');
 	
 	define('NWL_CREATED', 0);
 	define('NWL_SENDING', 1);
@@ -22,5 +22,7 @@
 	http://qvectors.net/downloads/images/vector/abstract/82-Abstract-Design-Green-Background-Vector-Graphic.png
 	http://img1.123freevectors.com/wp-content/uploads/new/Backgrounds/669-free-abstract-green-straight-lines-background-vector-art.png
 	
+	16.11.18
+	17.07.07: Bugfixes
 */
 ?>

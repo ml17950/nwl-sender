@@ -51,6 +51,9 @@ body {
 	border-right: 1px solid #808080;
 	flex: 0 0 200px;
 	padding: 4px 0 0 0;
+	font-family: "Montserrat",sans-serif;
+	font-size: 12px;
+	line-height: 1.5em;
 }
 	.sidebar span {
 		background: #f2f5f6; /* Old browsers */

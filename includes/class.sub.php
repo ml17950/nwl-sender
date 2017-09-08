@@ -119,6 +119,8 @@ class clsSubscriber {
 			if (count($emails) > 0) {
 				$sql = "SELECT `Email` FROM `letterit_blacklist`";
 				$blacklist = $this->db->fetch_assoc_key_array($sql, 'Email');
+				if (!is_array($blacklist))
+					$blacklist = array();
 				
 				$time = time();
 				
