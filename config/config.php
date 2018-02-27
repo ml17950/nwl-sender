@@ -8,6 +8,8 @@
 	define('SMTP_USER', 'xxxx');
 	define('SMTP_PASS', 'xxxx');
 
+	define('ABSPATH', dirname(__FILE__));
+
 	define('MY_TIMEZONE', 'Europe/Berlin');
 	define('MY_LANGUAGE', 'de');
 ?>

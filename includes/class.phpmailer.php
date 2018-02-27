@@ -131,9 +131,11 @@ class phpmailer {
 		$subject = $this->BuildSubject();
 		$message = $this->BuildMessage();
 		
-		file_put_contents('includes/xxx.head', $headers);
-		file_put_contents('includes/xxx.body', $message);
-		file_put_contents('includes/xxx.mail', $headers.$this->LE.$this->LE.$message);
+// 		debugarr($_SERVER);
+		
+// 		file_put_contents(ABS_PATH.'includes/xxx.head', $headers);
+// 		file_put_contents(ABS_PATH.'includes/xxx.body', $message);
+// 		file_put_contents(ABS_PATH.'includes/xxx.mail', $headers.$this->LE.$this->LE.$message);
 		
 // 		return true;
 		return mail($this->ToMail, $subject, $message, $headers);

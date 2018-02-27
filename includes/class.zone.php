@@ -133,12 +133,12 @@ class clsZone {
 		
 		echo "HTML Vorschau<br>";
 		echo "<div class='nwl-preview'>";
-		echo $this->mailer->preview_html;
+		echo stripslashes($this->mailer->mail->Body);
 		echo "</div>";
 		
 		echo "Text Vorschau<br>";
 		echo "<div class='nwl-preview'>";
-		echo nl2br($this->mailer->preview_text);
+		echo nl2br(stripslashes($this->mailer->mail->AltBody));
 		echo "</div>";
 		echo "</fieldset>";
 		
@@ -155,12 +155,12 @@ class clsZone {
 		
 		echo "HTML Vorschau<br>";
 		echo "<div class='nwl-preview'>";
-		echo $this->mailer->preview_html;
+		echo stripslashes($this->mailer->mail->Body);
 		echo "</div>";
 		
 		echo "Text Vorschau<br>";
-		echo "<div class='nwl-preview'>asd";
-		echo nl2br($this->mailer->preview_text);
+		echo "<div class='nwl-preview'>";
+		echo nl2br(stripslashes($this->mailer->mail->AltBody));
 		echo "</div>";
 		echo "</fieldset>";
 		

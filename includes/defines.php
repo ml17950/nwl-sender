@@ -26,6 +26,7 @@
 	17.01.16: Update to release
 	17.07.07: Bugfixes
 	17.09.08: Bugfixes
+	17.09.26: Bugfixes
 	18.02.27: Bugfixes, New Tab-Layout (Subscriber), external Languagefile (not all translated)
 */
 ?>

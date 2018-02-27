@@ -135,12 +135,12 @@ class clsNewsletter {
 			
 			echo "HTML Vorschau<br>";
 			echo "<div class='nwl-preview'>";
-			echo $this->mailer->preview_html;
+			echo $this->mailer->mail->Body;
 			echo "</div>";
 			
 			echo "Text Vorschau<br>";
 			echo "<div class='nwl-preview'>";
-			echo nl2br($this->mailer->preview_text);
+			echo nl2br($this->mailer->mail->AltBody);
 			echo "</div>";
 		}
 		
@@ -336,12 +336,12 @@ class clsNewsletter {
 					
 					echo "HTML Vorschau<br>";
 					echo "<div class='nwl-preview'>";
-					echo $this->mailer->preview_html;
+					echo $this->mailer->mail->Body;
 					echo "</div>";
 					
 					echo "Text Vorschau<br>";
 					echo "<div class='nwl-preview'>";
-					echo nl2br($this->mailer->preview_text);
+					echo nl2br($this->mailer->mail->AltBody);
 					echo "</div>";
 				}
 				else
@@ -468,12 +468,12 @@ class clsNewsletter {
 		
 		echo "HTML Vorschau<br>";
 		echo "<div class='nwl-preview'>";
-		echo $this->mailer->preview_html;
+		echo $this->mailer->mail->Body;
 		echo "</div>";
 		
 		echo "Text Vorschau<br>";
 		echo "<div class='nwl-preview'>";
-		echo nl2br($this->mailer->preview_text);
+		echo nl2br($this->mailer->mail->AltBody);
 		echo "</div>";
 	}
 	

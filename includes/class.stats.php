@@ -19,7 +19,7 @@ class clsStatistics {
 
 		$stats = $this->db->fetch_assoc_array($sql);
 
-		if (count($stats) > 0) {
+		if (is_array($stats) && (count($stats) > 0)) {
 			$maxAdd = 0;
 			$maxRem = 0;
 
@@ -44,8 +44,14 @@ class clsStatistics {
 			$rowCnt = 0;
 
 			foreach ($stats as $stat) {
-				$widthAdd = round(($maxWidth / $maxAdd) * $stat['Zugang'], 0);
-				$widthRem = round(($maxWidth / $maxRem) * $stat['Abgang'], 0);
+				if ($maxAdd > 0)
+					$widthAdd = round(($maxWidth / $maxAdd) * $stat['Zugang'], 0);
+				else
+					$widthAdd = 0;
+				if ($maxRem > 0)
+					$widthRem = round(($maxWidth / $maxRem) * $stat['Abgang'], 0);
+				else
+					$widthRem = 0;
 
 				echo "<tr>";
 				echo "<td class='t-left'>",str_pad($stat['Monat'], 2, '0', STR_PAD_LEFT)," / ",$stat['Jahr'],"</td>";
