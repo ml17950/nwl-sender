@@ -18,10 +18,6 @@ class clsMailer {
 		$this->mail->XMailer = 'info by service2solution.de';
 		$this->mail->Version = VERSION;
 		
-		define('SMTP_HOST', 'smtp.service2solution.de');
-		define('SMTP_USER', 'service2solution.de12');
-		define('SMTP_PASS', 'i8tU3mLf');
-		
 		$this->mail->IsMail();				// per PHP Mail verschicken
 		$this->mail->LE = "\n";
 		

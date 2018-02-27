@@ -16,22 +16,22 @@ class clsZone {
 			
 			if ($this->db->num_rows == 1) {
 				$_SESSION['current-zone'] = $id;
-				msg("Bereich ausgewählt", "success");
+				msg(LNG_ZONE1, "success");
 				redirect('index.php', 1);
 			}
 			else {
-				msg("Bereich nicht gefunden", "error");
+				msg(LNG_ZONE2, "error");
 				redirect('index.php?view=zone-list', 2);
 			}
 		}
 		else {
-			msg("Bereich nicht gefunden", "error");
+			msg(LNG_ZONE2, "error");
 			redirect('index.php?view=zone-list', 2);
 		}
 	}
 	
 	function list_all() {
-		echo "<h1>Bereich wählen</h1>";
+		echo "<h1>",LNG_ZONE3,"</h1>";
 		
 		$sql = "SELECT `BID`, COUNT(`Email`) AS `cnt` FROM `letterit_abonnenten` WHERE `Status` = ".ABO_ACTIVE." GROUP BY `BID`;";
 		$subs = $this->db->fetch_assoc_key_array($sql, 'BID');
@@ -45,20 +45,20 @@ class clsZone {
 		if ($this->db->num_rows > 0) {
 			echo "<table border='0' width='100%' cellpadding='2' cellspacing='0'>";
 			echo "<tr>";
-			echo "<th class='t-left'>Bereich</th>";
-			echo "<th class='t-left'>Absender</th>";
-			echo "<th class='t-center'>Newsletter</th>";
-			echo "<th class='t-center'>Abon.</th>";
+			echo "<th class='t-left'>",LNG_ZONE4,"</th>";
+			echo "<th class='t-left'>",LNG_ZONE5,"</th>";
+			echo "<th class='t-center'>",LNG_ZONE6,"</th>";
+			echo "<th class='t-center'>",LNG_ZONE7,"</th>";
 			echo "<th class='t-center' width='50'>&nbsp;</th>";
 			echo "</tr>";
 			
 			foreach ($zones as $zone) {
 				echo "<tr>";
-				echo "<td><a href='index.php?view=zone-select&amp;id=",$zone['BID'],"' title='wählen'>",$zone['Bereich_Name'],"</a></td>";
+				echo "<td><a href='index.php?view=zone-select&amp;id=",$zone['BID'],"' title='",LNG_BTN_SELECT,"'>",$zone['Bereich_Name'],"</a></td>";
 				echo "<td>",$zone['Absender_Name']," &lt;",$zone['Absender_Email'],"&gt;</td>";
 				echo "<td class='t-center'>",intval($nwls[$zone['BID']]['cnt']),"</td>";
 				echo "<td class='t-center'>",intval($subs[$zone['BID']]['cnt']),"</td>";
-				echo "<td class='t-center'><a href='index.php?view=zone-delete&amp;id=",$zone['BID'],"' title='löschen'>&#10008;</a></td>";
+				echo "<td class='t-center'><a href='index.php?view=zone-delete&amp;id=",$zone['BID'],"' title='",LNG_BTN_DELETE,"'>&#10008;</a></td>";
 				echo "</tr>";
 			}
 			
@@ -67,7 +67,7 @@ class clsZone {
 	}
 	
 	function edit() {
-		echo "<h1>Bereichs-Einstellungen bearbeiten</h1>";
+		echo "<h1>",LNG_ZONE8,"</h1>";
 		
 		if (isset($_POST['save'])) {
 			unset($_POST['save']);
@@ -94,7 +94,7 @@ class clsZone {
 // 			exit;
 			
 			$this->db->query($sql);
-			msg("Daten gespeichert", "success");
+			msg(LNG_ZONE9, "success");
 			
 			$sql = "SELECT * FROM `letterit_bereiche` ORDER BY `BID`";
 			$_SESSION['zones'] = $this->db->fetch_assoc_key_array($sql, 'BID');

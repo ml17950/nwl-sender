@@ -136,7 +136,7 @@ class clsUI {
 		$sql = "SELECT SUM(`Zugang`) AS `cntZ`, SUM(`Abgang`) AS `cntA` FROM `letterit_stats` WHERE `BID` = ".BID." AND `Monat` = '".date('n')."' AND `Jahr` = '".date('Y')."'";
 		$snfo = $this->db->query_assoc($sql);
 		
-		echo "<h2>Aktueller Bereich</h2>";
+		echo "<h2>Aktueller Bereich (",$_SESSION['zones'][BID]['Bereich_Name'],")</h2>";
 		echo "<table border='0' cellpadding='2' cellspacing='0'>";
 		echo "<tr><td width='200'>Anzahl aktive Abonnenten:</td><td>",intval($anfo[ABO_ACTIVE]['cnt']),"</td></tr>";
 		echo "<tr><td>Anzahl inaktive Abonnenten:</td><td>",intval($anfo[ABO_INACTIVE]['cnt']),"</td></tr>";
@@ -155,7 +155,7 @@ class clsUI {
 		echo "</div>\n"; // .main
 		
 		echo "<div class='footer'>";
-		echo "&copy; 2016 andev.de / M. Lindner";
+		echo "&copy; 2016-2018 andev.de / M. Lindner";
 		echo "</div>\n"; // .footer
 		
 // 		debugarr($_SESSION);

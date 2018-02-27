@@ -14,6 +14,12 @@ body {
 	padding: 10px 15px;
 }
 
+label {
+	display: inline-block;
+	min-width: 250px;
+	line-height: 25px;
+}
+
 .header {
 	max-width: 1024px;
 	margin: 0 auto;
@@ -118,6 +124,35 @@ body {
 	margin: 3px 0 10px 0;
 }
 
+.tab-container {
+}
+	.tab-header {
+	}
+		.tab-item {
+			display: inline-block;
+			background: #eeeeee;
+			border-top: 1px solid #808080;
+			border-left: 1px solid #808080;
+			border-bottom: 1px solid #808080;
+			padding: 5px 10px;
+		}
+		.tab-item:last-of-type {
+			border-right: 1px solid #808080;
+		}
+		.tab-item-active {
+			background: white;
+			border-bottom: 1px solid white;
+			padding: 5px 20px;
+		}
+	.tab-content {
+		background: white;
+		border-top: 1px solid #808080;
+		border-left: 1px solid #808080;
+		border-right: 1px solid #808080;
+		border-bottom: 1px solid #808080;
+		margin-top: -1px;
+		padding: 3px;
+	}
 
 /******* progress *******/
 .radius {
@@ -176,7 +211,6 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9dd53a', endColorstr='#7cbc0a',GradientType=0 );
 }
 /******* progress *******/
-
 
 .t-left { text-align: left; }
 .t-right { text-align: right; }

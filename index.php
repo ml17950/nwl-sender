@@ -6,6 +6,7 @@
 		include_once('config/config.php');
 	else
 		exit("config/config.php not found");
+	include_once('includes/lang_'.MY_LANGUAGE.'.php');
 	include_once('includes/defines.php');
 	include_once('includes/common.php');
 	include_once('includes/class.core.php');
@@ -139,7 +140,7 @@
 				break;
 			
 			default:
-				msg('unknown view ['.$view.']', 'error');
+				msg(LNG_SYS_UNKNOWN_VIEW.' ['.$view.']', 'error');
 		}
 		
 		echo "</div>\n"; // .content

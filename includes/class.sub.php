@@ -19,11 +19,38 @@ class clsSubscriber {
 	
 	function list_all() {
 		echo "<h1>Abonnenten anzeigen</h1>";
-		
+
+		$show = param_int('show', ABO_ACTIVE);
 		$sort = param('sort', 'date');
 		
+		echo "<div class='tab-container'>";
+		echo "<div class='tab-header'>";
+		
+		if ($show == ABO_ACTIVE)
+			echo "<a href='index.php?view=sub-list&amp;show=",ABO_ACTIVE,"' class='tab-item tab-item-active'>Angemeldet</a>";
+		else
+			echo "<a href='index.php?view=sub-list&amp;show=",ABO_ACTIVE,"' class='tab-item'>Angemeldet</a>";
+		
+		if ($show == ABO_VALIDATE)
+			echo "<a href='index.php?view=sub-list&amp;show=",ABO_VALIDATE,"' class='tab-item tab-item-active'>Validierung offen</a>";
+		else
+			echo "<a href='index.php?view=sub-list&amp;show=",ABO_VALIDATE,"' class='tab-item'>Validierung offen</a>";
+		
+		if ($show == ABO_INACTIVE)
+			echo "<a href='index.php?view=sub-list&amp;show=",ABO_INACTIVE,"' class='tab-item tab-item-active'>Abgemeldet</a>";
+		else
+			echo "<a href='index.php?view=sub-list&amp;show=",ABO_INACTIVE,"' class='tab-item'>Abgemeldet</a>";
+		
+		if ($show == ABO_REMOVED)
+			echo "<a href='index.php?view=sub-list&amp;show=",ABO_REMOVED,"' class='tab-item tab-item-active'>Deaktiviert</a>";
+		else
+			echo "<a href='index.php?view=sub-list&amp;show=",ABO_REMOVED,"' class='tab-item'>Deaktiviert</a>";
+		
+		echo "</div>"; // .tab-header
+		echo "<div class='tab-content'>";
+		
 		$sql  = "SELECT * FROM `letterit_abonnenten` WHERE `BID` = ".BID;
-		$sql .= " AND `Status` != ".ABO_REMOVED;
+		$sql .= " AND `Status` = ".$show;
 		if ($sort == 'status')
 			$sql .= " ORDER BY `Status` DESC, `Abmeldezeit` DESC;";
 		elseif ($sort == 'date')
@@ -35,15 +62,14 @@ class clsSubscriber {
 		if ($this->db->num_rows > 0) {
 			echo "<table border='0' width='100%' cellpadding='2' cellspacing='0'>";
 			echo "<tr>";
-			echo "<th class='t-left'><a href='index.php?view=sub-list&amp;sort=mail'>Email</a></th>";
+			echo "<th class='t-left'><a href='index.php?view=sub-list&amp;show=",$show,"&amp;sort=mail'>Email</a></th>";
 			echo "<th class='t-left'>Option1</th>";
-			echo "<th class='t-left' width='135'><a href='index.php?view=sub-list&amp;sort=date'>Anmeldung</a></th>";
-			echo "<th class='t-left' width='180'><a href='index.php?view=sub-list&amp;sort=status'>Status</a></th>";
+			echo "<th class='t-left' width='135'><a href='index.php?view=sub-list&amp;show=",$show,"&amp;sort=date'>Anmeldung</a></th>";
+			echo "<th class='t-left' width='180'><a href='index.php?view=sub-list&amp;show=",$show,"&amp;sort=status'>Status</a></th>";
 			echo "<th class='t-center' width='50'>&nbsp;</th>";
 			echo "</tr>";
 			
 			foreach ($subs as $sub) {
-// debugarr($sub);
 				echo "<tr>";
 				echo "<td>",$sub['Email'],"</td>";
 				echo "<td>",$sub['Option1'],"&nbsp;</td>";
@@ -61,7 +87,10 @@ class clsSubscriber {
 			echo "</table>";
 		}
 		else
-			msg("Keine Abonnenten eingetregen", "info");
+			msg("Keine Abonnenten gefunden", "info");
+		
+		echo "</div>"; // .tab-content
+		echo "</div>"; // .tab-container
 	}
 	
 	function add_single_mail($bid, $email) {

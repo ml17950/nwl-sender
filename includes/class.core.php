@@ -13,7 +13,7 @@ class clsCore {
 // 		echo "<!--",__CLASS__,":",__FUNCTION__,"-->\n";
 		
 		if (DB_HOST == 'xxxx')
-			die('Please edit your config/config.php');
+			die(LNG_SYS_SETUP1);
 		
 		include_once('class.db.php');
 		$this->db = new clsDB(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -55,7 +55,7 @@ class clsCore {
 		if (empty($_SESSION['config'])) {
 			$this->create_empty_tables();
 			unset($_SESSION['config']);
-			echo "<br><br>please press F5 to refresh";
+			echo "<br><br>",LNG_SYS_SETUP2;
 			exit;
 		}
 		
@@ -71,7 +71,7 @@ class clsCore {
 	}
 	
 	function create_empty_tables() {
-		echo "creating empty tables...<br>";
+		echo LNG_SYS_SETUP3,"<br>";
 		
 		$sql = "CREATE TABLE IF NOT EXISTS `letterit_abonnenten` (`AID` int(11) NOT NULL AUTO_INCREMENT,`BID` int(3) NOT NULL DEFAULT '0',`Email` varchar(80) COLLATE latin1_german1_ci NOT NULL DEFAULT '',`domain` varchar(60) COLLATE latin1_german1_ci NOT NULL DEFAULT '',`Datum` int(11) NOT NULL DEFAULT '0',`Option1` varchar(50) COLLATE latin1_german1_ci NOT NULL DEFAULT '',`Option2` varchar(50) COLLATE latin1_german1_ci NOT NULL DEFAULT '',`Option3` varchar(50) COLLATE latin1_german1_ci NOT NULL DEFAULT '',`Option4` varchar(50) COLLATE latin1_german1_ci NOT NULL DEFAULT '',`Code` varchar(15) COLLATE latin1_german1_ci NOT NULL DEFAULT '',`Abmeldezeit` int(11) NOT NULL DEFAULT '0',`Status` int(1) NOT NULL DEFAULT '0',`IP` varchar(40) COLLATE latin1_german1_ci NOT NULL DEFAULT '',PRIMARY KEY (`AID`),UNIQUE KEY `BID` (`BID`,`Email`)) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci AUTO_INCREMENT=1;";
 		$this->db->query($sql);
@@ -100,7 +100,7 @@ class clsCore {
 		$sql = "CREATE TABLE IF NOT EXISTS `letterit_vorlagen` (`VO_ID` int(3) NOT NULL AUTO_INCREMENT,`BID` int(3) NOT NULL DEFAULT '0',`Name` varchar(60) COLLATE latin1_german1_ci NOT NULL DEFAULT '',`HTML` text COLLATE latin1_german1_ci NOT NULL,`Text` text COLLATE latin1_german1_ci NOT NULL, PRIMARY KEY (`VO_ID`)) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci AUTO_INCREMENT=1;";
 		$this->db->query($sql);
 		
-		echo "creating basic config...<br>";
+		echo LNG_SYS_SETUP4,"<br>";
 		
 		$sql  = "INSERT INTO `letterit_mailer` (`Typ`, `sendmail_pfad`, `sendmail_delivery`, `qmail_pfad`, `mailroot_directory`, `smtp_server`, `smtp_user`, `smtp_password`, `smtp_port`, `emailcheck`, `PHP_Pfad`, `Letzter_Check`, `update_verfuegbar`, `default_language`, `Version`, `Max_Anhang`, `bounce_user`, `bounce_pass`, `bounce_port`, `bounce_host`, `bounce_email`, `bounce_anzahl`, `bounce_weiter`, `reload_send`) VALUES";
 		$sql .= " ('PHP', '/usr/lib/sendmail', 'SENDMAIL_DELIVERY_DEFAULT', '/var/qmail/bin', '', '', 'user', 'pass', 25, 0, '', 1460458321, 0, 'german', 2070726, 0, '', '', 0, '', '', 0, '3', 15);";
@@ -113,10 +113,12 @@ class clsCore {
 		$sql  = "INSERT INTO `letterit_bereiche` (`BID`, `Bereich_Name`, `Absender_Name`, `Absender_Email`, `Art`, `URL`, `LetteritURL`, `Best_Betreff`, `Best_Art`, `Best_Text`, `Best_HTML`, `Best_HTML_Bilder`, `Anmeldebest`, `Anmelde_Betreff`, `Anmelde_Art`, `Anmelde_Text`, `Anmelde_HTML`, `Anmelde_HTML_Bilder`, `Abmeldebest`, `Abmelde_Betreff`, `Abmelde_Art`, `Abmelde_Text`, `Abmelde_HTML`, `Abmelde_HTML_Bilder`, `Abmeldelink_Text`, `Abmeldelink_HTML`, `Option1`, `Option2`, `Option3`, `Option4`, `Fullpage`, `Zeichensatz`) VALUES";
 		$sql .= " ('1', 'Demo', '', '', '', '', '', '', '', '', '', '0', '0', '', '', '', '', '0', '0', '', '', '', '', '0', '', '', '', '', '', '', '0', '');";
 		$this->db->query($sql);
+		
+		echo LNG_SYS_SETUP5,"<br>";
 	}
 	
 	function config() {
-		echo "<h1>Einstellungen</h1>";
+		echo "<h1>",LNG_SYS_CONFIG1,"</h1>";
 		
 		if (isset($_POST['reload_send'])) {
 // debugarr($_POST);
@@ -125,22 +127,22 @@ class clsCore {
 			
 			$sql = "UPDATE `letterit_mailer` SET `reload_send` = '".$reload_send."', `bounce_weiter` = '".$bounce_weiter."';";
 			if ($this->db->query($sql)) {
-				msg("Einstellungen gespeichert", "success");
+				msg(LNG_SYS_CONFIG2, "success");
 				
 				// renew config in session
 				$sql = "SELECT * FROM `letterit_mailer`";
 				$_SESSION['config'] = $this->db->query_assoc($sql);
 			}
 			else
-				msg("Einstellungen nicht gespeichert", "error");
+				msg(LNG_SYS_CONFIG3, "error");
 		}
 		
 		echo "<form action='index.php?view=config' method='POST' accept-charset='utf-8'>";
 		
-		echo "<label for='reload_send' class='label'>Anzahl Mails pro Sendeblock (1-50 Stk):</label> <input type='text' name='reload_send' value='",intval($_SESSION['config']['reload_send']),"' required><br>";
-		echo "<label for='bounce_weiter' class='label'>Pause zwischen Sendeblock (1-30 Sek):</label> <input type='text' name='bounce_weiter' value='",intval($_SESSION['config']['bounce_weiter']),"' required><br>";
+		echo "<label for='reload_send' class='label'>",LNG_SYS_CONFIG4,":</label> <input type='text' name='reload_send' value='",intval($_SESSION['config']['reload_send']),"' required><br>";
+		echo "<label for='bounce_weiter' class='label'>",LNG_SYS_CONFIG5,":</label> <input type='text' name='bounce_weiter' value='",intval($_SESSION['config']['bounce_weiter']),"' required><br>";
 		
-		echo "<br><input type='submit' value='Speichern' class='button'>";
+		echo "<br><input type='submit' value='",LNG_BTN_SAVE,"' class='button'>";
 		
 		echo "</form>";
 	}
