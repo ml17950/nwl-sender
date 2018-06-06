@@ -45,6 +45,7 @@ class clsZone {
 		if ($this->db->num_rows > 0) {
 			echo "<table border='0' width='100%' cellpadding='2' cellspacing='0'>";
 			echo "<tr>";
+			echo "<th class='t-left'>",LNG_GLOBAL_01,"</th>";
 			echo "<th class='t-left'>",LNG_ZONE4,"</th>";
 			echo "<th class='t-left'>",LNG_ZONE5,"</th>";
 			echo "<th class='t-center'>",LNG_ZONE6,"</th>";
@@ -54,6 +55,7 @@ class clsZone {
 			
 			foreach ($zones as $zone) {
 				echo "<tr>";
+				echo "<td>",$zone['BID'],"</td>";
 				echo "<td><a href='index.php?view=zone-select&amp;id=",$zone['BID'],"' title='",LNG_BTN_SELECT,"'>",$zone['Bereich_Name'],"</a></td>";
 				echo "<td>",$zone['Absender_Name']," &lt;",$zone['Absender_Email'],"&gt;</td>";
 				echo "<td class='t-center'>",intval($nwls[$zone['BID']]['cnt']),"</td>";
@@ -129,7 +131,7 @@ class clsZone {
 		$code = base64_encode(date('DHis'));
 		//$validatelink = $znfo['URL'].'nwl-check.php?id='.BID.'&email='.$znfo['Absender_Email'].'&code='.$code.'&ehpdo=validate';
 		$validatelink = $znfo['LetteritURL'].'&code='.$code.'&ehpdo=validate';
-		$this->mailer->prepare_mail(BID, $znfo['Absender_Email'], $znfo['Anmelde_Betreff'], $znfo['Anmelde_HTML'], $znfo['Anmelde_Text'], $validatelink);
+		$this->mailer->prepare_mail(BID, '', $znfo['Absender_Email'], $znfo['Anmelde_Betreff'], $znfo['Anmelde_HTML'], $znfo['Anmelde_Text'], $validatelink);
 		
 		echo "HTML Vorschau<br>";
 		echo "<div class='nwl-preview'>";
@@ -151,7 +153,7 @@ class clsZone {
 		
 		echo "<br><br>";
 		
-		$this->mailer->prepare_mail(BID, $znfo['Absender_Email'], $znfo['Abmelde_Betreff'], $znfo['Abmelde_HTML'], $znfo['Abmelde_Text']);
+		$this->mailer->prepare_mail(BID, '', $znfo['Absender_Email'], $znfo['Abmelde_Betreff'], $znfo['Abmelde_HTML'], $znfo['Abmelde_Text']);
 		
 		echo "HTML Vorschau<br>";
 		echo "<div class='nwl-preview'>";
@@ -182,7 +184,7 @@ class clsZone {
 // 		$code = base64_encode(date('DHis'));
 // 		$validatelink = $znfo['URL'].'nwl-check.php?id='.BID.'&email='.$znfo['Absender_Email'].'&code='.$code.'&ehpdo=validate';
 // 		$validatelink = $znfo['LetteritURL'].'&code='.$code.'&ehpdo=validate';
-// 		$this->mailer->prepare_mail(BID, $znfo['Absender_Email'], $znfo['Anmelde_Betreff'], $znfo['Anmelde_HTML'], $znfo['Anmelde_Text'], $validatelink);
+// 		$this->mailer->prepare_mail(BID, '', $znfo['Absender_Email'], $znfo['Anmelde_Betreff'], $znfo['Anmelde_HTML'], $znfo['Anmelde_Text'], $validatelink);
 // 		
 // 		echo "HTML Vorschau<br>";
 // 		echo "<div class='nwl-preview'>";
@@ -196,7 +198,7 @@ class clsZone {
 // 		
 // 		echo "<h2>Abmeldebestätigung</h2>";
 // 		
-// 		$this->mailer->prepare_mail(BID, $znfo['Absender_Email'], $znfo['Abmelde_Betreff'], $znfo['Abmelde_HTML'], $znfo['Abmelde_Text']);
+// 		$this->mailer->prepare_mail(BID, '', $znfo['Absender_Email'], $znfo['Abmelde_Betreff'], $znfo['Abmelde_HTML'], $znfo['Abmelde_Text']);
 // 		
 // 		echo "HTML Vorschau<br>";
 // 		echo "<div class='nwl-preview'>";

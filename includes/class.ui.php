@@ -112,7 +112,7 @@ class clsUI {
 		$sql = "SELECT `BID`, `Email`, `Datum` FROM `letterit_abonnenten` ORDER BY `Datum` DESC LIMIT 1;";
 		$enfo = $this->db->query_assoc($sql);
 		
-		$sql = "SELECT SUM(`Zugang`) AS `cntZ`, SUM(`Abgang`) AS `cntA` FROM `letterit_stats` WHERE `Monat` = '".date('n')."' AND `Jahr` = '".date('Y')."'";
+		$sql = "SELECT SUM(`registered`) AS `cntZ`, SUM(`deregistered`) AS `cntA` FROM `letterit_stats` WHERE `month` = '".date('n')."' AND `year` = '".date('Y')."'";
 		$snfo = $this->db->query_assoc($sql);
 		
 		echo "<h2>Alle Bereiche</h2>";
@@ -133,7 +133,7 @@ class clsUI {
 		$sql = "SELECT `Email`, `Datum` FROM `letterit_abonnenten` WHERE `BID` = ".BID." ORDER BY `Datum` DESC LIMIT 1;";
 		$enfo = $this->db->query_assoc($sql);
 		
-		$sql = "SELECT SUM(`Zugang`) AS `cntZ`, SUM(`Abgang`) AS `cntA` FROM `letterit_stats` WHERE `BID` = ".BID." AND `Monat` = '".date('n')."' AND `Jahr` = '".date('Y')."'";
+		$sql = "SELECT SUM(`registered`) AS `cntZ`, SUM(`deregistered`) AS `cntA` FROM `letterit_stats` WHERE `BID` = ".BID." AND `month` = '".date('n')."' AND `year` = '".date('Y')."'";
 		$snfo = $this->db->query_assoc($sql);
 		
 		echo "<h2>Aktueller Bereich (",$_SESSION['zones'][BID]['Bereich_Name'],")</h2>";

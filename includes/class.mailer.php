@@ -29,16 +29,17 @@ class clsMailer {
 // 		$this->mail->SMTPDebug = true;
 	}
 	
-	function prepare_mail($bid, $email, $subject, $html, $text, $validatelink = '') {
+	function prepare_mail($bid, $lsid, $email, $subject, $html, $text, $validatelink = '') {
 		$replace['!!validatelink!!'] = $validatelink;
 		$replace['!!unsubmittext!!'] = $_SESSION['zones'][$bid]['Abmeldelink_Text'];
 		$replace['!!unsubmitlink!!'] = $_SESSION['zones'][$bid]['LetteritURL'];
 		$replace['!!email!!'] = $email;
-		$replace['!!bid!!'] = $bid;
 		$replace['!!option1!!'] = $_SESSION['zones'][$bid]['Option1'];
 		$replace['!!option2!!'] = $_SESSION['zones'][$bid]['Option2'];
 		$replace['!!option3!!'] = $_SESSION['zones'][$bid]['Option3'];
 		$replace['!!option4!!'] = $_SESSION['zones'][$bid]['Option4'];
+		$replace['!!bid!!'] = $bid;
+		$replace['!!lsid!!'] = $lsid;
 		
 		$what = array_keys($replace);
 		$with = array_values($replace);

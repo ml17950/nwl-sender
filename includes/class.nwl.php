@@ -22,12 +22,16 @@ class clsNewsletter {
 	
 	function create() {
 		echo "<h1>Newsletter erstellen/bearbeiten</h1>";
-		
+
 		msg("Ein neuer Newsletter wird erstellt", "info");
-		
+
 		$sql = "INSERT INTO `letterit_send` (`LS_ID`, `HTML`, `Text`, `Betreff`, `BID`) VALUES (NULL, '<p>!!option1!!<br>!!option2!!<br>!!option3!!<br>!!option4!!</p><p>!!unsubmittext!!</p>', '!!unsubmittext!!', 'Newsletter ".date('d.m.Y H:i:s')."', '".BID."');";
 		$this->db->query($sql);
 		$new_lsid = $this->db->last_insert_id;
+
+		$sql = "INSERT INTO `letterit_views` (`BID`, `LS_ID`, `VIEWS`, `LAST_VIEW`, `CLICKS`, `LAST_CLICK`) VALUES ('".BID."', '".$new_lsid."', '0', '0', '0', '0');";
+		$this->db->query($sql);
+
 		redirect('index.php?view=nwl-edit&lsid='.$new_lsid, 0);
 	}
 	
@@ -71,7 +75,7 @@ class clsNewsletter {
 			$preview = param('preview');
 			
 			if (check_mail($preview)) {
-				$this->mailer->prepare_mail(BID, $preview, $subject, $html_body, $text_body);
+				$this->mailer->prepare_mail(BID, $lsid, $preview, $subject, $html_body, $text_body);
 				if ($this->mailer->send_single_mail($preview, true))
 					msg("Eine Testmail wurde an ".$preview." geschickt", "success");
 				else
@@ -131,7 +135,7 @@ class clsNewsletter {
 				menubar: false, toolbar: 'styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | link | code',
 				plugins: ['link code textcolor'] });</script>\n";
 			
-			$this->mailer->prepare_mail(BID, $_SESSION['user']['Name'], $nwl['Betreff'], $nwl['HTML'], $nwl['Text']);
+			$this->mailer->prepare_mail(BID, $nwl['LS_ID'], $_SESSION['user']['Name'], $nwl['Betreff'], $nwl['HTML'], $nwl['Text']);
 			
 			echo "HTML Vorschau<br>";
 			echo "<div class='nwl-preview'>";
@@ -229,7 +233,7 @@ class clsNewsletter {
 						
 						if ($this->db->num_rows > 0) {
 							foreach ($mails as $aid => $mail) {
-								$this->mailer->prepare_mail(BID, $mail['Email'], $nwl['Betreff'], $nwl['HTML'], $nwl['Text']);
+								$this->mailer->prepare_mail(BID, $lsid, $mail['Email'], $nwl['Betreff'], $nwl['HTML'], $nwl['Text']);
 								
 								if ($this->mailer->send_single_mail($mail['Email'], false)) {
 									$last_aid = $aid;
@@ -332,7 +336,7 @@ class clsNewsletter {
 // 					echo nl2br($nwl['Text']);
 // 					echo "</div>";
 					
-					$this->mailer->prepare_mail(BID, $_SESSION['user']['Name'], $nwl['Betreff'], $nwl['HTML'], $nwl['Text']);
+					$this->mailer->prepare_mail(BID, $nwl['LS_ID'], $_SESSION['user']['Name'], $nwl['Betreff'], $nwl['HTML'], $nwl['Text']);
 					
 					echo "HTML Vorschau<br>";
 					echo "<div class='nwl-preview'>";
@@ -464,7 +468,7 @@ class clsNewsletter {
 		
 		echo "<h1>",$nwl['Betreff'],"</h1>";
 		
-		$this->mailer->prepare_mail(BID, $_SESSION['user']['Name'], $nwl['Betreff'], $nwl['HTML'], $nwl['Text']);
+		$this->mailer->prepare_mail(BID, $id, $_SESSION['user']['Name'], $nwl['Betreff'], $nwl['HTML'], $nwl['Text']);
 		
 		echo "HTML Vorschau<br>";
 		echo "<div class='nwl-preview'>";
@@ -523,7 +527,7 @@ class clsNewsletter {
 		
 		$validatelink = $onfo['LetteritURL'].'&code='.$code.'&ehpdo=validate';
 		
-		$this->mailer->prepare_mail($bid, $email, $onfo['Anmelde_Betreff'], $onfo['Anmelde_HTML'], $onfo['Anmelde_Text'], $validatelink);
+		$this->mailer->prepare_mail($bid, '', $email, $onfo['Anmelde_Betreff'], $onfo['Anmelde_HTML'], $onfo['Anmelde_Text'], $validatelink);
 		$this->mailer->send_single_mail($email, true);
 	}
 	
@@ -539,12 +543,12 @@ class clsNewsletter {
 			$sql .= " WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."' LIMIT 1;";
 			$this->db->query($sql);
 			
-			$sql = "SELECT `Zugang` FROM `letterit_stats` WHERE `BID` = ".$bid." AND `Monat` = ".date('n')." AND `Jahr` = ".date('Y').";";
+			$sql = "SELECT `registered` FROM `letterit_stats` WHERE `BID` = ".$bid." AND `month` = ".date('n')." AND `year` = ".date('Y').";";
 			$stats = $this->db->query_assoc($sql);
-			if (isset($stats['Zugang']))
-				$sql = "UPDATE `letterit_stats` SET `Zugang` = `Zugang` + 1 WHERE `BID` = ".$bid." AND `Monat` = ".date('n')." AND `Jahr` = ".date('Y').";";
+			if (isset($stats['registered']))
+				$sql = "UPDATE `letterit_stats` SET `registered` = `registered` + 1 WHERE `BID` = ".$bid." AND `month` = ".date('n')." AND `year` = ".date('Y').";";
 			else
-				$sql = "INSERT INTO `letterit_stats` (`BID`, `Monat`, `Jahr`, `Zugang`, `Abgang`) VALUES ('".$bid."', '".date('n')."', '".date('Y')."', '1', '0');";
+				$sql = "INSERT INTO `letterit_stats` (`BID`, `month`, `year`, `registered`, `deregistered`) VALUES ('".$bid."', '".date('n')."', '".date('Y')."', '1', '0');";
 			$this->db->query($sql);
 			
 			return true;
@@ -564,12 +568,12 @@ class clsNewsletter {
 		$sql .= " WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."' LIMIT 1;";
 		$this->db->query($sql);
 		
-		$sql = "SELECT `Abgang` FROM `letterit_stats` WHERE `BID` = ".$bid." AND `Monat` = ".date('n')." AND `Jahr` = ".date('Y').";";
+		$sql = "SELECT `deregistered` FROM `letterit_stats` WHERE `BID` = ".$bid." AND `month` = ".date('n')." AND `year` = ".date('Y').";";
 		$stats = $this->db->query_assoc($sql);
-		if (isset($stats['Abgang']))
-			$sql = "UPDATE `letterit_stats` SET `Abgang` = `Abgang` + 1 WHERE `BID` = ".$bid." AND `Monat` = ".date('n')." AND `Jahr` = ".date('Y').";";
+		if (isset($stats['deregistered']))
+			$sql = "UPDATE `letterit_stats` SET `deregistered` = `deregistered` + 1 WHERE `BID` = ".$bid." AND `month` = ".date('n')." AND `year` = ".date('Y').";";
 		else
-			$sql = "INSERT INTO `letterit_stats` (`BID`, `Monat`, `Jahr`, `Zugang`, `Abgang`) VALUES ('".$bid."', '".date('n')."', '".date('Y')."', '0', '1');";
+			$sql = "INSERT INTO `letterit_stats` (`BID`, `month`, `year`, `registered`, `deregistered`) VALUES ('".$bid."', '".date('n')."', '".date('Y')."', '0', '1');";
 		$this->db->query($sql);
 		
 		// =====================================
@@ -578,7 +582,7 @@ class clsNewsletter {
 			$sql = "SELECT `URL`,`Abmelde_Betreff`,`Abmelde_Text`,`Abmelde_HTML` FROM `letterit_bereiche` WHERE `BID` = ".$bid." LIMIT 1;";
 			$onfo = $this->db->query_assoc($sql);
 			
-			$this->mailer->prepare_mail($bid, $email, $onfo['Abmelde_Betreff'], $onfo['Abmelde_HTML'], $onfo['Abmelde_Text']);
+			$this->mailer->prepare_mail($bid, '', $email, $onfo['Abmelde_Betreff'], $onfo['Abmelde_HTML'], $onfo['Abmelde_Text']);
 			$this->mailer->send_single_mail($email, true);
 		}
 	}

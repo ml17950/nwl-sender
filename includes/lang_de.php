@@ -1,4 +1,6 @@
 <?php
+	define('LNG_GLOBAL_01',			'ID');
+
 	define('LNG_BTN_SAVE',			'Speichern');
 	define('LNG_BTN_SELECT',		'Wählen');
 	define('LNG_BTN_DELETE',		'Löschen');
@@ -9,6 +11,7 @@
 	define('LNG_SYS_SETUP3',		'Erstelle leere Tabellen...');
 	define('LNG_SYS_SETUP4',		'Erstelle Basis-Konfiguration...');
 	define('LNG_SYS_SETUP5',		'Erstelle standard Benutzer (admin) mit dem Passwort (admin)');
+	define('LNG_SYS_SETUP6',		'Datenbank-Struktur aktualisiert');
 
 	define('LNG_SYS_CONFIG1',		'Einstellungen');
 	define('LNG_SYS_CONFIG2',		'Einstellungen gespeichert');

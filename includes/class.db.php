@@ -47,7 +47,7 @@ class clsDB {
 	}
 	
 	function query($sql) {
-		if (ISDEV) echo "<!-- ",__CLASS__,"::",__FUNCTION__,"-->\n";
+// 		if (ISDEV) echo "<!-- ",__CLASS__,"::",__FUNCTION__,"-->\n";
 		
 		$this->reset();
 		

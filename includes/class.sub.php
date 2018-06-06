@@ -115,12 +115,12 @@ class clsSubscriber {
 // 				echo "insert error";
 			}
 			else {
-				$sql = "SELECT `Zugang` FROM `letterit_stats` WHERE `BID` = ".$bid." AND `Monat` = ".date('n')." AND `Jahr` = ".date('Y').";";
+				$sql = "SELECT `registered` FROM `letterit_stats` WHERE `BID` = ".$bid." AND `month` = ".date('n')." AND `year` = ".date('Y').";";
 				$stats = $this->db->query_assoc($sql);
-				if (isset($stats['Zugang']))
-					$sql = "UPDATE `letterit_stats` SET `Zugang` = `Zugang` + 1 WHERE `BID` = ".$bid." AND `Monat` = ".date('n')." AND `Jahr` = ".date('Y').";";
+				if (isset($stats['registered']))
+					$sql = "UPDATE `letterit_stats` SET `registered` = `registered` + 1 WHERE `BID` = ".$bid." AND `month` = ".date('n')." AND `year` = ".date('Y').";";
 				else
-					$sql = "INSERT INTO `letterit_stats` (`BID`, `Monat`, `Jahr`, `Zugang`, `Abgang`) VALUES ('".$bid."', '".date('n')."', '".date('Y')."', '1', '0');";
+					$sql = "INSERT INTO `letterit_stats` (`BID`, `month`, `year`, `registered`, `deregistered`) VALUES ('".$bid."', '".date('n')."', '".date('Y')."', '1', '0');";
 				$this->db->query($sql);
 				
 				return true;
