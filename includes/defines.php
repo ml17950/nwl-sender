@@ -1,5 +1,5 @@
 <?php
-	define('VERSION', '18.06.06');
+	define('VERSION', '18.06.09');
 	
 	define('NWL_CREATED', 0);
 	define('NWL_SENDING', 1);
@@ -29,5 +29,6 @@
 	17.09.26: Bugfixes
 	18.02.27: Bugfixes, New Tab-Layout (Subscriber), external Languagefile (not all translated)
 	18.06.06: Bugfixes, Changed database structure
+	18.06.09: Bugfixes, Code-Review, Removed IP from Code/Database
 */
 ?>

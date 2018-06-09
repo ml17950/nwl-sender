@@ -85,17 +85,17 @@ class clsStatistics {
 
 
 // 		$ddd = array();
-// 		$sql = "SELECT `BID` , `Datum` , `Abmeldezeit` FROM `letterit_abonnenten` ";
+// 		$sql = "SELECT `BID` , `RegisterDT` , `OptOutDT` FROM `letterit_abonnenten` ";
 // 		$xxx = $this->db->fetch_assoc_array($sql);
 // 		foreach ($xxx as $xx) {
 // 			$key1 = $xx['BID'];
 // 			
-// 			if ($xx['Abmeldezeit'] == 0) {
-// 				$key2 = date('Y-n', $xx['Datum']);
+// 			if ($xx['OptOutDT'] == 0) {
+// 				$key2 = date('Y-n', $xx['RegisterDT']);
 // 				$ddd[$key1][$key2]['registered']++;
 // 			}
 // 			else {
-// 				$key2 = date('Y-n', $xx['Abmeldezeit']);
+// 				$key2 = date('Y-n', $xx['OptOutDT']);
 // 				$ddd[$key1][$key2]['deregistered']++;
 // 			}
 // 		}

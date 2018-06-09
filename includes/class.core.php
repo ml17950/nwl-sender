@@ -62,7 +62,9 @@ class clsCore {
 		if (empty($_SESSION['config']['DB_VERS']))
 			$this->update_database_from_null_to_180606();
 		elseif ($_SESSION['config']['DB_VERS'] == '18.01.06')
-			$this->update_database_from_180606_to_180606();
+			$this->update_database_from_180106_to_180606();
+		elseif ($_SESSION['config']['DB_VERS'] == '18.06.06')
+			$this->update_database_from_180606_to_180609();
 		
 		if (!isset($_SESSION['zones'])) {
 			$sql = "SELECT * FROM `letterit_bereiche` ORDER BY `BID`";
@@ -164,7 +166,7 @@ class clsCore {
 		exit;
 	}
 
-	function update_database_from_180606_to_180606() {
+	function update_database_from_180106_to_180606() {
 		$sql = "DROP TABLE `letterit_anhang`;";
 		$this->db->query($sql);
 		$sql = "DROP TABLE `letterit_bounce`;";
@@ -191,6 +193,34 @@ class clsCore {
 		$this->db->query($sql);
 
 		$sql = "UPDATE `letterit_mailer` SET `DB_VERS` = '18.06.06';";
+		if ($this->db->query($sql)) {
+			msg(LNG_SYS_SETUP6, "success");
+			unset($_SESSION['config']);
+		}
+		else
+			msg(LNG_SYS_SETUP6, "error");
+
+		echo "<br><br>",LNG_SYS_SETUP2;
+		exit;
+	}
+
+	function update_database_from_180606_to_180609() {
+		$sql = "ALTER TABLE `letterit_abonnenten` DROP `IP`;";
+		$this->db->query($sql);
+		$sql = "ALTER TABLE `letterit_abonnenten` CHANGE `Abmeldezeit` `OptOutDT` INT(11) NOT NULL DEFAULT '0'";
+		$this->db->query($sql);
+		$sql = "ALTER TABLE `letterit_abonnenten` ADD `OptInDT` INT NOT NULL AFTER `Code` ";
+		$this->db->query($sql);
+		$sql = "ALTER TABLE `letterit_abonnenten` CHANGE `Datum` `RegisterDT` INT( 11 ) NOT NULL DEFAULT '0'";
+		$this->db->query($sql);
+		$sql = "ALTER TABLE `letterit_abonnenten` CHANGE `domain` `Domain` VARCHAR( 60 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT ''";
+		$this->db->query($sql);
+		$sql = "ALTER TABLE `letterit_abonnenten` CHANGE `Code` `OptInCode` VARCHAR( 15 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT ''";
+		$this->db->query($sql);
+		$sql = "UPDATE `letterit_abonnenten` SET `OptInDT` = `RegisterDT` WHERE `OptInDT` = 0;";
+		$this->db->query($sql);
+
+		$sql = "UPDATE `letterit_mailer` SET `DB_VERS` = '18.06.09';";
 		if ($this->db->query($sql)) {
 			msg(LNG_SYS_SETUP6, "success");
 			unset($_SESSION['config']);

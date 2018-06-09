@@ -35,7 +35,7 @@
 			switch ($ehpdo) {
 				case '':
 				case 'check':
-					$sql = "SELECT `AID`,`Email`,`Datum`,`Option1`,`Abmeldezeit`,`Status` FROM `letterit_abonnenten` WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."';";
+					$sql = "SELECT `AID`,`Email`,`RegisterDT`,`Option1`,`OptInDT`,`OptOutDT`,`Status` FROM `letterit_abonnenten` WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."';";
 					$info = $core->db->query_assoc($sql);
 					if (!empty($info['AID'])) {
 						if ($info['Status'] == ABO_ACTIVE) {
@@ -54,7 +54,7 @@
 							$btntxt = 'Erneut senden';
 						}
 						else {
-							msg('Die Adresse '.$email.' wurde am '.date('d.m.y', $info['Abmeldezeit']).' abgemeldet', 'info');
+							msg('Die Adresse '.$email.' wurde am '.date('d.m.y', $info['OptOutDT']).' abgemeldet', 'info');
 							echo "<label for='email'>Email</label> <input type='text' name='email' value='",$email,"' style='width: 200px;' required><br>";
 // 							echo "<label for='ename'>Name</label>  <input type='text' name='ename' value='",$name,"' style='width: 200px;' placeholder='Optional'><br>";
 							echo "<input type='text' name='ehpdo' value='opt-in' style='width: 200px; display: none;' placeholder='Optional'><br>";

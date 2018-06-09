@@ -505,16 +505,16 @@ class clsNewsletter {
 	}
 	
 	function opt_in($bid, $email, $name = '') {
-		$sql = "SELECT `AID`,`Email`,`Datum`,`Option1`,`Abmeldezeit`,`Status` FROM `letterit_abonnenten` WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."';";
+		$sql = "SELECT `AID`,`Email`,`RegisterDT`,`Option1`,`OptInDT`,`OptOutDT`,`Status` FROM `letterit_abonnenten` WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."';";
 		$info = $this->db->query_assoc($sql);
 		$code = base64_encode(date('DHis'));
 		
 		if (!empty($info['AID'])) {
-			$sql = "UPDATE `letterit_abonnenten` SET `Datum` = '".time()."', `Abmeldezeit` = '0', `Status` = '".ABO_VALIDATE."', `IP` = '".$_SERVER['REMOTE_ADDR']."', `Code` = '".$code."' WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."';";
+			$sql = "UPDATE `letterit_abonnenten` SET `RegisterDT` = '".time()."', `OptInDT` = '0', `OptOutDT` = '0', `Status` = '".ABO_VALIDATE."', `OptInCode` = '".$code."' WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."';";
 		}
 		else {
 			$splitemail = explode('@', $email);
-			$sql = "INSERT INTO `letterit_abonnenten` SET Email='".$email."',domain='".$splitemail[1]."',BID='".$bid."',Datum='".time()."',Status='".ABO_VALIDATE."',IP='".$_SERVER['REMOTE_ADDR']."',Code='".$code."';";
+			$sql = "INSERT INTO `letterit_abonnenten` SET Email='".$email."',Domain='".$splitemail[1]."',BID='".$bid."',RegisterDT='".time()."',Status='".ABO_VALIDATE."',OptInCode='".$code."';";
 		}
 		$this->db->query($sql);
 		
@@ -532,14 +532,14 @@ class clsNewsletter {
 	}
 	
 	function opt_validate($bid, $email, $code) {
-		$sql = "SELECT `AID`,`Status`,`Email`,`Code` FROM `letterit_abonnenten` WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."';";
+		$sql = "SELECT `AID`,`Status`,`Email`,`OptInCode` FROM `letterit_abonnenten` WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."';";
 		$info = $this->db->query_assoc($sql);
 		
 		if ($info['Status'] == ABO_ACTIVE)
 			return true;
 		
-		if (($code == $info['Code']) || ($code == '!!adm!!')) {
-			$sql  = "UPDATE `letterit_abonnenten` SET `Datum` = '".time()."', `Status` = '".ABO_ACTIVE."', `IP` = '".$_SERVER['REMOTE_ADDR']."'";
+		if (($code == $info['OptInCode']) || ($code == '!!adm!!')) {
+			$sql  = "UPDATE `letterit_abonnenten` SET `OptInDT` = '".time()."', `Status` = '".ABO_ACTIVE."'";
 			$sql .= " WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."' LIMIT 1;";
 			$this->db->query($sql);
 			
@@ -558,13 +558,13 @@ class clsNewsletter {
 	}
 	
 	function opt_out($bid, $email, $send_opout_mail = true) {
-		$sql = "SELECT `AID`,`Status`,`Email`,`Code` FROM `letterit_abonnenten` WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."';";
+		$sql = "SELECT `AID`,`Status`,`Email`,`OptInCode` FROM `letterit_abonnenten` WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."';";
 		$info = $this->db->query_assoc($sql);
 		
 		if ($info['Status'] == ABO_INACTIVE)
 			return true;
 		
-		$sql  = "UPDATE `letterit_abonnenten` SET `Abmeldezeit` = '".time()."', `Status` = '".ABO_INACTIVE."', `IP` = '".$_SERVER['REMOTE_ADDR']."'";
+		$sql  = "UPDATE `letterit_abonnenten` SET `OptOutDT` = '".time()."', `Status` = '".ABO_INACTIVE."'";
 		$sql .= " WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."' LIMIT 1;";
 		$this->db->query($sql);
 		

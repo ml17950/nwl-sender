@@ -109,7 +109,7 @@ class clsUI {
 		$sql = "SELECT `Status`, COUNT(`Email`) AS `cnt` FROM `letterit_abonnenten` GROUP BY `Status`;";
 		$anfo = $this->db->fetch_assoc_key_array($sql, 'Status');
 		
-		$sql = "SELECT `BID`, `Email`, `Datum` FROM `letterit_abonnenten` ORDER BY `Datum` DESC LIMIT 1;";
+		$sql = "SELECT `BID`, `Email`, `RegisterDT` FROM `letterit_abonnenten` ORDER BY `RegisterDT` DESC LIMIT 1;";
 		$enfo = $this->db->query_assoc($sql);
 		
 		$sql = "SELECT SUM(`registered`) AS `cntZ`, SUM(`deregistered`) AS `cntA` FROM `letterit_stats` WHERE `month` = '".date('n')."' AND `year` = '".date('Y')."'";
@@ -121,7 +121,7 @@ class clsUI {
 		echo "<tr><td>Anzahl aktive Abonnenten:</td><td>",intval($anfo[ABO_ACTIVE]['cnt']),"</td></tr>";
 		echo "<tr><td>Anzahl inaktive Abonnenten:</td><td>",intval($anfo[ABO_INACTIVE]['cnt']),"</td></tr>";
 		echo "<tr><td>Anzahl fehlende Validierungen:</td><td>",intval($anfo[ABO_VALIDATE]['cnt']),"</td></tr>";
-		echo "<tr><td>Neuster Abonnent:</td><td>",$enfo['Email']," - ",date('d.m.y H:i', $enfo['Datum'])," - ",zname($enfo['BID']),"</td></tr>";
+		echo "<tr><td>Neuster Abonnent:</td><td>",$enfo['Email']," - ",date('d.m.y H:i', $enfo['RegisterDT'])," - ",zname($enfo['BID']),"</td></tr>";
 		echo "<tr><td>Anmeldungen diesen Monat:</td><td>",intval($snfo['cntZ']),"</td></tr>";
 		echo "<tr><td>Abmeldungen diesen Monat:</td><td>",intval($snfo['cntA']),"</td></tr>";
 		echo "</table>";
@@ -130,7 +130,7 @@ class clsUI {
 		$sql = "SELECT `Status`, COUNT(`Email`) AS `cnt` FROM `letterit_abonnenten` WHERE `BID` = ".BID." GROUP BY `Status`;";
 		$anfo = $this->db->fetch_assoc_key_array($sql, 'Status');
 		
-		$sql = "SELECT `Email`, `Datum` FROM `letterit_abonnenten` WHERE `BID` = ".BID." ORDER BY `Datum` DESC LIMIT 1;";
+		$sql = "SELECT `Email`, `RegisterDT` FROM `letterit_abonnenten` WHERE `BID` = ".BID." ORDER BY `RegisterDT` DESC LIMIT 1;";
 		$enfo = $this->db->query_assoc($sql);
 		
 		$sql = "SELECT SUM(`registered`) AS `cntZ`, SUM(`deregistered`) AS `cntA` FROM `letterit_stats` WHERE `BID` = ".BID." AND `month` = '".date('n')."' AND `year` = '".date('Y')."'";
@@ -141,7 +141,7 @@ class clsUI {
 		echo "<tr><td width='200'>Anzahl aktive Abonnenten:</td><td>",intval($anfo[ABO_ACTIVE]['cnt']),"</td></tr>";
 		echo "<tr><td>Anzahl inaktive Abonnenten:</td><td>",intval($anfo[ABO_INACTIVE]['cnt']),"</td></tr>";
 		echo "<tr><td>Anzahl fehlende Validierungen:</td><td>",intval($anfo[ABO_VALIDATE]['cnt']),"</td></tr>";
-		echo "<tr><td>Neuster Abonnent:</td><td>",$enfo['Email']," - ",date('d.m.y H:i', $enfo['Datum']),"</td></tr>";
+		echo "<tr><td>Neuster Abonnent:</td><td>",$enfo['Email']," - ",date('d.m.y H:i', $enfo['RegisterDT']),"</td></tr>";
 		echo "<tr><td>Anmeldungen diesen Monat:</td><td>",intval($snfo['cntZ']),"</td></tr>";
 		echo "<tr><td>Abmeldungen diesen Monat:</td><td>",intval($snfo['cntA']),"</td></tr>";
 		echo "</table>";

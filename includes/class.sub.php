@@ -52,9 +52,9 @@ class clsSubscriber {
 		$sql  = "SELECT * FROM `letterit_abonnenten` WHERE `BID` = ".BID;
 		$sql .= " AND `Status` = ".$show;
 		if ($sort == 'status')
-			$sql .= " ORDER BY `Status` DESC, `Abmeldezeit` DESC;";
+			$sql .= " ORDER BY `Status` DESC, `OptOutDT` DESC;";
 		elseif ($sort == 'date')
-			$sql .= " ORDER BY `Datum` DESC;";
+			$sql .= " ORDER BY `RegisterDT` DESC;";
 		else
 			$sql .= " ORDER BY `Email` ASC;";
 		$subs = $this->db->fetch_assoc_array($sql);
@@ -73,8 +73,11 @@ class clsSubscriber {
 				echo "<tr>";
 				echo "<td>",$sub['Email'],"</td>";
 				echo "<td>",$sub['Option1'],"&nbsp;</td>";
-				echo "<td>",date('d.m.Y H:i', $sub['Datum']),"</td>";
-				echo "<td>",$this->status2text($sub['Status'], $sub['Abmeldezeit']),"</td>";
+				if ($show == ABO_VALIDATE)
+					echo "<td>",date('d.m.Y H:i', $sub['RegisterDT']),"</td>";
+				else
+					echo "<td>",date('d.m.Y H:i', $sub['OptInDT']),"</td>";
+				echo "<td>",$this->status2text($sub['Status'], $sub['OptOutDT']),"</td>";
 				echo "<td class='t-center'>";
 				if (($sub['Status'] == ABO_VALIDATE) || ($sub['Status'] == ABO_INACTIVE))
 					echo " <a href='index.php?view=sub-list&amp;set=",$sub['Email'],"&amp;status=",ABO_ACTIVE,"&amp;sort=",$sort,"' title='Anmelden'>&#10004;</a>";
@@ -94,7 +97,7 @@ class clsSubscriber {
 	}
 	
 	function add_single_mail($bid, $email) {
-		$sql = "SELECT `AID`,`Status`,`Email`,`Code` FROM `letterit_abonnenten` WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."';";
+		$sql = "SELECT `AID`,`Status`,`Email`,`OptInCode` FROM `letterit_abonnenten` WHERE `BID` = ".$bid." AND `Email` LIKE '".$email."';";
 		$info = $this->db->query_assoc($sql);
 		
 		if (intval($info['AID']) > 0) {
@@ -108,7 +111,7 @@ class clsSubscriber {
 		}
 		else {
 			$splitemail = explode('@', $email);
-			$sql = "INSERT INTO `letterit_abonnenten` SET Email='".$email."',domain='".$splitemail[1]."',BID='".$bid."',Datum='".time()."',Status='".ABO_ACTIVE."',IP='".$_SERVER['REMOTE_ADDR']."',Code='';";
+			$sql = "INSERT INTO `letterit_abonnenten` SET Email='".$email."',Domain='".$splitemail[1]."',BID='".$bid."',RegisterDT='".time()."',OptInDT='".time()."',Status='".ABO_ACTIVE."',OptInCode='';";
 			
 			if ($this->db->query($sql) === false) {
 				// insert error
@@ -168,7 +171,7 @@ class clsSubscriber {
 								echo $email," &rarr; gesperrt durch Blacklist<br>";
 							}
 							else {
-								$sqli  = "INSERT INTO `letterit_abonnenten` SET Email='".$email."',domain='".$splitemail[1]."',BID='".BID."',Datum='".$time."',Status='1',IP='".$_SERVER['REMOTE_ADDR']."';";
+								$sqli  = "INSERT INTO `letterit_abonnenten` SET Email='".$email."',Domain='".$splitemail[1]."',BID='".BID."',RegisterDT='".$time."',OptInDT='".$time."',Status='".ABO_ACTIVE."';";
 								$this->db->query($sqli);
 								if ($this->db->last_errno == 1062)
 									echo $email," &rarr; bereits eingetragen<br>";
@@ -292,7 +295,7 @@ class clsSubscriber {
 // 							echo $email," &rarr; Adresse ungültig<br>";
 // 						}
 // 						else {
-							$sqli = "UPDATE `letterit_abonnenten` SET `Status` = '".ABO_REMOVED."', `IP` = '".$_SERVER['REMOTE_ADDR']."' WHERE `BID` = ".BID." AND `Email` LIKE '".$email."' LIMIT 1;";
+							$sqli = "UPDATE `letterit_abonnenten` SET `Status` = '".ABO_REMOVED."' WHERE `BID` = ".BID." AND `Email` LIKE '".$email."' LIMIT 1;";
 							$this->db->query($sqli);
 							if ($this->db->num_rows == 0)
 								echo $email," &rarr; nicht gefunden<br>";
