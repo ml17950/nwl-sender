@@ -298,6 +298,9 @@ class clsNewsletter {
 					}
 				}
 				elseif ($nwl['Status'] == NWL_READY) {
+					$sql = "UPDATE `letterit_views` SET `VIEWS`=0,`LAST_VIEW`=0,`CLICKS`=0,`LAST_CLICK`=0 WHERE `BID` = ".$nwl['BID']." AND `LS_ID` = ".$lsid.";";
+					$this->db->query($sql);
+
 					msg("Der Newsletter wurde an alle Abonnenten verschickt", "success");
 				}
 				else

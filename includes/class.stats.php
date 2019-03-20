@@ -7,14 +7,86 @@ class clsStatistics {
 		$this->db = $db;
 	}
 
-	function add_view($bid, $lsid) {
-		$sql = "UPDATE `letterit_views` SET `VIEWS` = `VIEWS` + 1, `LAST_VIEW` = ".time()." WHERE `BID` = ".$bid." AND `LS_ID` = ".$lsid.";";
+	function add_view($bid, $newsletter_id) {
+		$sql = "UPDATE `letterit_views` SET `VIEWS` = `VIEWS` + 1, `LAST_VIEW` = ".time()." WHERE `BID` = ".$bid." AND `LS_ID` = ".$newsletter_id.";";
 		$this->db->query($sql);
 	}
 
-	function add_click($bid, $lsid) {
-		$sql = "UPDATE `letterit_views` SET `CLICKS` = `CLICKS` + 1, `LAST_CLICK` = ".time()." WHERE `BID` = ".$bid." AND `LS_ID` = ".$lsid.";";
+	function add_click($bid, $newsletter_id) {
+		$sql = "UPDATE `letterit_views` SET `CLICKS` = `CLICKS` + 1, `LAST_CLICK` = ".time()." WHERE `BID` = ".$bid." AND `LS_ID` = ".$newsletter_id.";";
 		$this->db->query($sql);
+	}
+
+	function clicks($bid = 0) {
+// 		if ($bid == 0) {
+// 			echo "<h1>",LNG_STATS1,"</h1>";
+// 			$sql = "SELECT `month`, `year`,SUM(`registered`) AS `registered`, SUM(`deregistered`) AS `deregistered` FROM `letterit_stats` GROUP BY `year`, `month` ORDER BY `year` DESC, `month` DESC;";
+// 		}
+// 		else {
+			echo "<h1>",LNG_STATS2," ",zname($bid),"</h1>";
+			$sql  = "SELECT T1.*,T2.Betreff,T2.Abo_send_time,T2.Abonnenten FROM `letterit_views` AS T1";
+			$sql .= " JOIN `letterit_send` AS T2 ON T2.BID = T1.BID AND T2.LS_ID = T1.LS_ID";
+			$sql .= " WHERE T1.BID = ".$bid." ORDER BY T2.Abo_send_time DESC;";
+			
+// 			$sql = "SELECT * FROM `letterit_send` WHERE `BID` = ".BID." ORDER BY `LS_ID` DESC;";
+// 		}
+
+// echo $sql,"<hr>";
+		$stats = $this->db->fetch_assoc_array($sql);
+
+		if (is_array($stats) && (count($stats) > 0)) {
+			$maxViews = 0;
+			$maxClicks = 0;
+
+			foreach ($stats as $stat) {
+				if ($stat['VIEWS'] > $maxViews)
+					$maxViews = $stat['VIEWS'];
+				if ($stat['CLICKS'] > $maxClicks)
+					$maxClicks = $stat['CLICKS'];
+			}
+// echo "VIEWS: ",$maxViews," / CLICKS: ",$maxClicks,"<hr>";
+
+			echo "<table border='0' width='100%' cellpadding='2' cellspacing='0'>";
+			echo "<tr>";
+			echo "<th class='t-left' width='140'>",LNG_STATS7,"</th>";
+			echo "<th class='t-left'>",LNG_STATS8,"</th>";
+			echo "<th class='t-right' width='50'>",LNG_ZONE7,"</th>";
+			echo "<th class='t-right' width='50'>",LNG_STATS9,"</th>";
+			echo "<th class='t-right' width='50'>",LNG_STATS10,"</th>";
+			echo "<th class='t-left' width='150'>",LNG_STATS10,"</th>";
+			echo "</tr>";
+
+			$maxWidth = 150; // = 100%
+
+			foreach ($stats as $stat) {
+				if ($maxClicks > 0)
+					$widthClicks = round(($maxWidth / $maxClicks) * $stat['CLICKS'], 0);
+				else
+					$widthClicks = 0;
+
+				echo "<tr>";
+				if ($stat['Abo_send_time'] > 0)
+					echo "<td class='t-left'>",date('D, d.m.Y H:i', $stat['Abo_send_time']),"</td>";
+				else
+					echo "<td class='t-left'>---</td>";
+				if (strlen($stat['Betreff']) > 55)
+					echo "<td class='t-left'>",substr($stat['Betreff'],0,55),"...</td>";
+				else
+					echo "<td class='t-left'>",$stat['Betreff'],"</td>";
+				echo "<td class='t-right'>",$stat['Abonnenten'],"</td>";
+				echo "<td class='t-right'>",$stat['VIEWS'],"</td>";
+				echo "<td class='t-right'>",$stat['CLICKS'],"</td>";
+// 				echo "<td class='t-right'><img src='images/bar_red_light.png' height='14' width='",$widthRem,"' title='",$stat['deregistered']," ",LNG_STATS4,"'></td>";
+				echo "<td class='t-left'><img src='images/bar_green_light.png' height='14' width='",$widthClicks,"' title='",$stat['CLICKS']," ",LNG_STATS10,"'></td>";
+				echo "</tr>";
+			}
+
+			echo "</table>";
+		}
+		else
+			msg(LNG_STATS6, "info");
+
+// 		debugarr($stats);
 	}
 
 	function display($bid = 0) {

@@ -25,6 +25,10 @@
 	define('LNG_STATS4',			'Abmeldungen');
 	define('LNG_STATS5',			'Anmeldungen');
 	define('LNG_STATS6',			'Noch keine Statistik vorhanden');
+	define('LNG_STATS7',			'Gesendet');
+	define('LNG_STATS8',			'Name');
+	define('LNG_STATS9',			'Views');
+	define('LNG_STATS10',			'Klicks');
 
 	define('LNG_ZONE1',				'Bereich ausgewählt');
 	define('LNG_ZONE2',				'Bereich nicht gefunden');

@@ -83,7 +83,7 @@ class clsUI {
 		echo "<ul>";
 		echo "<li><a href='index.php?view=stats-all'>alle Bereiche</a></li>";
 		echo "<li><a href='index.php?view=stats-cur'>aktueller Bereich</a></li>";
-// 		echo "<li><a href='index.php?view=stats-page'>Seitenaufrufe</a></li>";
+		echo "<li><a href='index.php?view=stats-clicks'>Aufrufe/Klicks</a></li>";
 		echo "</ul>";
 		
 		echo "<span>Global</span>";

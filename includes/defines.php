@@ -1,20 +1,20 @@
 <?php
-	define('VERSION', '18.06.09');
-	
-	define('NWL_CREATED', 0);
-	define('NWL_SENDING', 1);
-	define('NWL_READY', 2);
-	define('NWL_ABORTED', 3);
-	
-	define('ABO_ACTIVE', 1);
-	define('ABO_INACTIVE', 2);
-	define('ABO_VALIDATE', 3);
-	define('ABO_REMOVED', 4);
-	
+	define('VERSION', '19.03.20');
+
+	define('NWL_CREATED',	0);
+	define('NWL_SENDING',	1);
+	define('NWL_READY',		2);
+	define('NWL_ABORTED',	3);
+
+	define('ABO_ACTIVE',	1);
+	define('ABO_INACTIVE',	2);
+	define('ABO_VALIDATE',	3);
+	define('ABO_REMOVED',	4);
+
 // 	define('xxx', 0);
 // 	define('xxx', 0);
 // 	define('xxx', 0);
-	
+
 // 	define('REGEX_EMAIL', "^([-!#\$%&'*+./0-9=?A-Z^_`a-z{|}~])+@([-!#\$%&'*+/0-9=?A-Z^_`a-z{|}~]+\\.)+[a-zA-Z]{2,6}\$");
 
 /*
@@ -29,6 +29,6 @@
 	17.09.26: Bugfixes
 	18.02.27: Bugfixes, New Tab-Layout (Subscriber), external Languagefile (not all translated)
 	18.06.06: Bugfixes, Changed database structure
-	18.06.09: Bugfixes, Code-Review, Removed IP from Code/Database
+	19.03.20: Added View/Click Statistics
 */
 ?>

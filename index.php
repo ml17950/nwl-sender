@@ -123,6 +123,10 @@
 				$core->stats->display(BID);
 				break;
 			
+			case 'stats-clicks':
+				$core->stats->clicks(BID);
+				break;
+			
 			case 'config':
 				$core->config();
 				break;
