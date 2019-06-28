@@ -1,6 +1,8 @@
 <?php
 	define('LNG_GLOBAL_01',			'ID');
 
+	define('LNG_PREVIEW',			'Entwurf');
+
 	define('LNG_BTN_SAVE',			'Speichern');
 	define('LNG_BTN_SELECT',		'Wählen');
 	define('LNG_BTN_DELETE',		'Löschen');

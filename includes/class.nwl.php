@@ -75,7 +75,7 @@ class clsNewsletter {
 			$preview = param('preview');
 			
 			if (check_mail($preview)) {
-				$this->mailer->prepare_mail(BID, $lsid, $preview, $subject, $html_body, $text_body);
+				$this->mailer->prepare_mail(BID, $lsid, $preview, '['.LNG_PREVIEW.'] '.$subject, $html_body, $text_body);
 				if ($this->mailer->send_single_mail($preview, true))
 					msg("Eine Testmail wurde an ".$preview." geschickt", "success");
 				else
