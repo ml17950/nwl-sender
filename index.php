@@ -1,11 +1,14 @@
 <?php
+	error_reporting(E_ERROR | E_WARNING | E_PARSE);
+	ini_set('display_errors', 1);
+
 	session_start();
-	date_default_timezone_set(MY_TIMEZONE);
-	
+
 	if (file_exists('config/config.php'))
 		include_once('config/config.php');
 	else
 		exit("config/config.php not found");
+	date_default_timezone_set(MY_TIMEZONE);
 	include_once('includes/lang_'.MY_LANGUAGE.'.php');
 	include_once('includes/defines.php');
 	include_once('includes/common.php');

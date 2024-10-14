@@ -1,5 +1,5 @@
 <?php
-	define('VERSION', '19.06.28');
+	define('VERSION', '24.10.14');
 
 	define('NWL_CREATED',	0);
 	define('NWL_SENDING',	1);

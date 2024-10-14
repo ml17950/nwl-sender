@@ -1,0 +1,416 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"_SE",
+				"$_SESSION\tSESSION['…']"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ui",
+				"UI: Select Theme"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"ui ",
+				"UI: Select Theme"
+			],
+			[
+				"package control: disab",
+				"Package Control: Disable Package"
+			],
+			[
+				"package control: list",
+				"Package Control: List Packages"
+			],
+			[
+				"package ",
+				"Preferences: Package Control Settings"
+			],
+			[
+				"package control: en",
+				"Package Control: Enable Package"
+			],
+			[
+				"package control: dis",
+				"Package Control: Disable Package"
+			],
+			[
+				"package control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"package control: re",
+				"Package Control: Remove Package"
+			],
+			[
+				"disab",
+				"Package Control: Disable Package"
+			],
+			[
+				"console",
+				"Set Syntax: R Console"
+			],
+			[
+				"ui: ",
+				"UI: Select Color Scheme"
+			],
+			[
+				"packa",
+				"Package Control: Disable Package"
+			],
+			[
+				"pa",
+				"Package Control: Disable Package"
+			],
+			[
+				"ui:",
+				"UI: Select Color Scheme"
+			],
+			[
+				"package control: install packa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/ml-dev/github/nwl-sender"
+	],
+	"file_history":
+	[
+		"/?192.168.150.20/code/timbo/_offene-patches/x-dokuwiki-2.txt",
+		"/?192.168.150.20/code/timbo/_offene-patches/includes/class.dokuwiki.php",
+		"/D/ml-dev/gitea/ProfiKarstensen/kamera-sylt/Kameras.txt",
+		"/D/ml-dev/gitea/ProfiKarstensen/kamera-sylt/start-streams.bat",
+		"/D/ml-dev/s2s-timbo/templates/firewall/base-config.txt",
+		"/W/timbo/includes/class.monitoring.php",
+		"/D/ml-dev/gitea/Stiftung-Uhlebuell/haustechnik-tool/vscode-black.code-profile",
+		"/D/ml-dev/gitea/Stiftung-Uhlebuell/haustechnik-tool/vscode-grey.code-profile",
+		"/D/syncthing/S2S/Kamera-Streams.bat",
+		"/D/ml-dev/gitea/ProfiKarstensen/kamera-sylt/streamverz.bat",
+		"/D/ml-dev/gitea/ProfiKarstensen/kamera-sylt/streamverz.txt",
+		"/D/ml-dev/gitea/ProfiKarstensen/kamera-sylt/Stream.bat",
+		"/D/ml-dev/gitea/ProfiKarstensen/kamera-sylt/Stream13.bat",
+		"/D/ml-dev/gitea/ProfiKarstensen/kamera-sylt/Stream12.bat",
+		"/D/ml-dev/gitea/ProfiKarstensen/kamera-sylt/Stream.txt",
+		"/D/ml-dev/gitea/ProfiKarstensen/kamera-sylt/Stream13.btxt",
+		"/D/ml-dev/gitea/ProfiKarstensen/kamera-sylt/Stream12.txt",
+		"/W/test/flatfile/yellow-medical2/system/extensions/yellow-extension.ini",
+		"/W/test/flatfile/yellow-medical2/content/shared/contact.md",
+		"/W/test/flatfile/yellow-medical2/system/layouts/footer.html",
+		"/W/test/flatfile/yellow-medical2/system/extensions/yellow-system.ini",
+		"/W/test/flatfile/yellow-medical2/system/workers/flexbox.php",
+		"/W/test/flatfile/yellow-medical2/system/themes/simplepage.css",
+		"/W/test/flatfile/yellow-medical2/system/layouts/header.html",
+		"/W/test/flatfile/yellow-medical2/system/layouts/default.html",
+		"/W/test/flatfile/yellow-medical2/content/8-ueber-uns/page.md",
+		"/W/test/flatfile/yellow-medical2/content/shared/footer.md",
+		"/W/test/flatfile/yellow-medical2/content/9-impressum/page.md",
+		"/W/test/flatfile/yellow-medical2/content/1-home/page.md",
+		"/W/test/flatfile/yellow-medical2/system/workers/simplepage.php",
+		"/W/test/flatfile/yellow-medical2/content/shared/header.md",
+		"/W/test/flatfile/yellow-medical2/system/workers/stockholm.php",
+		"/W/test/flatfile/yellow-medical2/system/workers/flexbox.css",
+		"/W/test/flatfile/yellow-medical2/system/extensions/yellow-user.ini",
+		"/W/test/flatfile/yellow-medical2/content/2-impressum/page.md",
+		"/W/test/flatfile/yellow-medical2/system/extensions/update-available.ini",
+		"/W/test/flatfile/yellow-medical2/system/extensions/yellow-language.ini",
+		"/W/test/flatfile/yellow-main/content/1-home/page.md",
+		"/W/test/flatfile/yellow-main/content/2-impressum/page.md",
+		"/W/test/flatfile/yellow-main/system/extensions/yellow-system.ini",
+		"/W/test/flatfile/yellow-main/content/3-datenschutz/page.md",
+		"/D/ml-dev/s2s-timbo-hwp-exporter/main.go",
+		"/D/ml-dev/s2s-timbo-hwp-exporter/config.ini",
+		"/D/syncthing/www/wwwroot/s2s-homepage/___this.sublime-project",
+		"/D/syncthing/www/wwwroot/s2s-homepage/user/pages/08.ueber-uns/03._team/team.md",
+		"/C/Users/m.lindner/AppData/Local/Packages/TheDebianProject.DebianGNULinux_76v4gfsz19hv4/LocalState/rootfs/home/martin/webuntis-grabber/webuntis-data.sh",
+		"/C/Users/m.lindner/AppData/Local/Packages/TheDebianProject.DebianGNULinux_76v4gfsz19hv4/LocalState/rootfs/home/martin/webuntis-grabber/webuntis-parser.php",
+		"/C/Users/m.lindner/AppData/Local/Packages/TheDebianProject.DebianGNULinux_76v4gfsz19hv4/LocalState/rootfs/home/martin/webuntis-grabber/today.json",
+		"/C/Users/m.lindner/AppData/Local/Packages/TheDebianProject.DebianGNULinux_76v4gfsz19hv4/LocalState/rootfs/home/martin/webuntis-grabber/token.txt",
+		"/C/Users/m.lindner/AppData/Local/Packages/TheDebianProject.DebianGNULinux_76v4gfsz19hv4/LocalState/rootfs/home/martin/webuntis-grabber/cookies.txt",
+		"/D/ml-dev/s2s-timbo/_export-scripts/DMS/timbo-hwp-sync/sage-export-kunden.vbs",
+		"/D/ml-dev/s2s-timbo/_export-scripts/DMS/timbo-hwp-sync/sage-export-ansprech.vbs",
+		"/?192.168.150.20/code/timbo/includes/cust.orders.head.php",
+		"/?192.168.150.20/code/timbo/includes/class.hwp.php",
+		"/?192.168.150.20/code/timbo/_config.php",
+		"/D/xampp-versionen/start-8.2.12.bat",
+		"/D/xampp-versionen/start-8.2.12-old.bat",
+		"/C/Users/m.lindner/mail.bat",
+		"/C/Users/m.lindner/csv-mail.txt",
+		"/C/Users/m.lindner/csv-mail.bat",
+		"/D/xampp-versionen/start-7.4.33.bat",
+		"/D/xampp-versionen/xampp-8.2.12/php/php.ini",
+		"/D/xampp-versionen/xampp-8.2.12/apache/conf/httpd.conf.template",
+		"/D/xampp-versionen/xampp-8.2.12/apache/conf/httpd.conf",
+		"/C/Users/m.lindner/credentials-ML-WORK.bat",
+		"/D/ml-dev/s2s-server-tools/update/Server/Check-Host/s2s-check-host-offline.bat",
+		"/D/ml-dev/s2s-server-tools/update/Server/Check-Host/s2s-check-host-online.bat",
+		"/D/ml-dev/gitea/S2S/s2s-check-host/s2s-check-host-offline.bat",
+		"/D/ml-dev/gitea/S2S/s2s-check-host/s2s-check-host-online.bat",
+		"/D/ml-dev/s2s-server-tools/update/Server/Check-Host/s2s-check-host-mail-config.bat",
+		"/C/Temp/test1/make.bat",
+		"/C/Temp/test1/cmd/code.go",
+		"/C/Temp/test1/main.go",
+		"/D/ml-dev/s2s-server-tools/update/Server/s2s-check-host/_install.bat",
+		"/C/Users/m.lindner/go-init.bat",
+		"/D/ml-dev/gitea/S2S/s2s-task-service/main.go",
+		"/D/ml-dev/s2s-server-tools/update/Server/s2s-check-host/check-all-hosts.bat",
+		"/D/ml-dev/s2s-server-tools/update/Server/s2s-check-host/s2s-check-host.ini",
+		"/C/S2S/Check-Host/service-uninstall.bat",
+		"/C/S2S/Check-Host/service-install.bat",
+		"/C/S2S/Check-Host/s2s-task-service.ini",
+		"/D/ml-dev/s2s-server-tools/update/Server/s2s-check-host/s2s-check-host-send-mail.bat",
+		"/D/ml-dev/s2s-server-tools/update/Server/s2s-check-host/s2s-check-host-offline.bat",
+		"/D/ml-dev/s2s-server-tools/update/Server/s2s-check-host/s2s-check-host-online.bat",
+		"/D/ml-dev/s2s-server-tools/update/Server/s2s-check-host/Server-Online.bat",
+		"/H/Temp/EXTF_GP_Stamm_20240216160313_2.csv",
+		"/D/ml-dev/gitea/S2S/starter-service/main.go",
+		"/F/Tempdler.bat",
+		"/C/Temp/test1/README.md",
+		"/C/Temp/test1/.gitignore",
+		"/D/ml-dev/gitea/NFON/david-to-csv/go.mod",
+		"/D/ml-dev/gitea/NFON/david-to-csv/main.go",
+		"/D/ml-dev/gitea/NFON/csv-to-nfon/main.go",
+		"/W/timbo/import/abonnements/m365/2023-12.csv",
+		"/W/timbo/import/abonnements/m365/2023-11.csv",
+		"/W/timbo/import/abonnements/m365/2023-10.csv",
+		"/W/timbo/import/abonnements/m365/2023-09.csv",
+		"/W/timbo/import/abonnements/m365/2023-08.csv",
+		"/W/timbo/import/abonnements/m365/2023-01.csv",
+		"/W/timbo/import/abonnements/m365/2023-02.csv",
+		"/W/timbo/import/abonnements/m365/2023-03.csv",
+		"/W/timbo/import/abonnements/m365/2023-04.csv",
+		"/W/timbo/import/abonnements/m365/2023-06.csv",
+		"/W/timbo/import/abonnements/m365/2023-07.csv",
+		"/D/ml-dev/gitea/Martin/vaultwarden/README.md",
+		"/D/ml-dev/gitea/Martin/vaultwarden/docker-compose.yml",
+		"/D/ml-dev/s2s-server-tools/setup/S2S-Server-Tools.iss",
+		"/D/ml-dev/gitea/NFON/setup-and-update/_make_update.bat",
+		"/D/ml-dev/gitea/NFON/setup-and-update/this.version",
+		"/D/ml-dev/gitea/NFON/setup-and-update/this.file",
+		"/D/ml-dev/gitea/NFON/setup-and-update/_build_all.bat",
+		"/D/ml-dev/gitea/NFON/create-license/_make.bat",
+		"/D/ml-dev/gitea/NFON/m365-to-csv/_make.bat",
+		"/D/ml-dev/gitea/NFON/nfon-customer-to-csv/_make.bat",
+		"/D/ml-dev/gitea/NFON/david-to-csv/_make.bat",
+		"/D/ml-dev/gitea/NFON/hwp-adressen-to-csv/_make.bat",
+		"/D/ml-dev/gitea/NFON/hwp-kunden-to-csv/_make.bat",
+		"/D/ml-dev/gitea/NFON/hwp-lieferanten-to-csv/_make.bat",
+		"/D/ml-dev/gitea/NFON/hwp-mitarbeiter-to-csv/_make.bat",
+		"/D/ml-dev/gitea/NFON/csv-to-nfon/_make.bat",
+		"/D/ml-dev/gitea/NFON/hwp-mitarbeiter-to-csv/.gitignore",
+		"/D/ml-dev/gitea/NFON/hwp-mitarbeiter-to-csv/main.go",
+		"/W/timbo/templates/firewall/Kunden.csv",
+		"/D/ml-dev/gitea/s2s-homepage/user/themes/s2s23/templates/modular/special-text.twig",
+		"/W/timbo/print_template.php",
+		"/W/timbo/generate_odt.php",
+		"/W/timbo/xxx-generate-fw-contracts.php",
+		"/D/ml-dev/gitea/s2s-homepage/user/themes/s2s23/templates/modular/services-with-images.html.twig"
+	],
+	"find":
+	{
+		"height": 27.2
+	},
+	"find_in_files":
+	{
+		"height": 192.800003052,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			" ",
+			"Premium",
+			"BenutzerMail",
+			"xxxx",
+			"2016",
+			"isWeekend",
+			"monospaced",
+			"StartCameraStream",
+			"StartStream",
+			"--no-one-instance --no-embedded-video --no-video-deco --width=560 --align=1 --qt-start-minimized",
+			"C:\\Program Files\\VideoLAN\\VLC",
+			"C:\\Program Files\\VideoLAN\\VLC ",
+			"$basecfg",
+			"'.$the_date.'",
+			"TOORsecureIN+20"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"folders":
+	[
+		{
+			"path": "D:\\ml-dev\\github\\nwl-sender"
+		}
+	],
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.2
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 71.2
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 60.0,
+		"last_filter": "TIMBOAPP",
+		"selected_items":
+		[
+			[
+				"TIMBOAPP",
+				"TIMBOAPP"
+			],
+			[
+				"__cons",
+				"__construct"
+			],
+			[
+				"grey",
+				"--grey-text-color"
+			],
+			[
+				"cons",
+				"__construct"
+			]
+		],
+		"width": 598.4
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 299.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

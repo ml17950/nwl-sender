@@ -64,6 +64,11 @@ class clsStatistics {
 				else
 					$widthClicks = 0;
 
+				if ($stat['VIEWS'] >= $stat['Abonnenten'])
+					$widthViews = 100;
+				else
+					$widthViews = round(($maxWidth / $stat['Abonnenten']) * $stat['VIEWS'], 0);
+
 				echo "<tr>";
 				if ($stat['Abo_send_time'] > 0)
 					echo "<td class='t-left'>",date('D, d.m.Y H:i', $stat['Abo_send_time']),"</td>";
@@ -77,7 +82,8 @@ class clsStatistics {
 				echo "<td class='t-right'>",$stat['VIEWS'],"</td>";
 				echo "<td class='t-right'>",$stat['CLICKS'],"</td>";
 // 				echo "<td class='t-right'><img src='images/bar_red_light.png' height='14' width='",$widthRem,"' title='",$stat['deregistered']," ",LNG_STATS4,"'></td>";
-				echo "<td class='t-left'><img src='images/bar_green_light.png' height='14' width='",$widthClicks,"' title='",$stat['CLICKS']," ",LNG_STATS10,"'></td>";
+// 				echo "<td class='t-left'><img src='images/bar_green_light.png' height='14' width='",$widthClicks,"' title='",$stat['CLICKS']," ",LNG_STATS10,"'></td>";
+				echo "<td class='t-left'><img src='images/bar_green_light.png' height='14' width='",$widthViews,"' title='",$stat['VIEWS']," ",LNG_STATS9,"'></td>";
 				echo "</tr>";
 			}
 
